@@ -1,0 +1,1 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script><?php /**PATH /Users/muhamadrafli/Documents/app-laravel/laravel-sipmah/resources/views/components/scripts/momentjs.blade.php ENDPATH**/ ?>
