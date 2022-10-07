@@ -24,7 +24,8 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('status')->default(0);
             $table->bigInteger('phone');
             $table->foreignId('sub_district_id');
-            $table->string('address');
+            $table->text('address');
+            $table->string('image')->nullable();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

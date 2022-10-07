@@ -9,6 +9,7 @@
             <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
         </ol>
     </div>
+    @foreach ($users as $user)
     <div class="container-xl px-4 mt-4 mb-4">
         <!-- Account page navigation-->
         <div class="row">
@@ -18,7 +19,11 @@
                     <div class="card-header"><p class="h5 text-gray-800">Foto Profil</p></div>
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
-                        <img class="img-account-profile rounded-circle mb-4" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="" width="170px" height="170px">
+                        @if ($user->image == null)
+                            <img class="img-account-profile img-thumbnail rounded-circle mb-4" src="/img/man.png" alt="" width="170px" height="170px">
+                        @else
+                            <img class="img-account-profile rounded-circle mb-4" src="{{ asset('img/profile-images/' . $user->image) }}" alt="{{ $user->image }}" width="170px" height="170px">
+                        @endif
                     </div>
                 </div>
             </div>
@@ -33,7 +38,7 @@
                                 <h6 class="text-gray-800">NIS / NUPTK</h6>
                             </div>
                             <div class="col-lg-9">
-                                <h6 class="text-muted">: 20221056</h6>
+                                <h6 class="text-muted">: {{ $user->identifier_number }}</h6>
                             </div>
                             {{-- END NIS / NUPTK Detail --}}
                             {{-- Full Name Detail --}}
@@ -41,33 +46,37 @@
                                 <h6 class="text-gray-800">Nama Lengkap</h6>
                             </div>
                             <div class="col-lg-9">
-                                <h6 class="text-muted">: Rudiansyah Fakhrul</h6>
+                                <h6 class="text-muted">: {{ $user->name }}</h6>
                             </div>
                             {{-- End Full Name Detail --}}
                             <div class="col-lg-3">
                                 <h6 class="text-gray-800">Jenis Kelamin</h6>
                             </div>
                             <div class="col-lg-9">
-                                <h6 class="text-muted">: Laki - Laki</h6>
+                                @if ($user->gender == 1)
+                                    <h6 class="text-muted">: Laki - Laki</h6>
+                                @else
+                                    <h6 class="text-muted">: Perempuan</h6>
+                                @endif
                             </div>
                             {{-- Email Detail --}}
                             <div class="col-lg-3">
                                 <h6 class="text-gray-800">Alamat Email</h6>
                             </div>
                             <div class="col-lg-9">
-                                <h6 class="text-muted">: rudiansyah@example.com</h6>
+                                <h6 class="text-muted">: {{ $user->email }}</h6>
                             </div>
                             <div class="col-lg-3">
                                 <h6 class="text-gray-800">No Telepon</h6>
                             </div>
                             <div class="col-lg-9">
-                                <h6 class="text-muted">: 083844752389</h6>
+                                <h6 class="text-muted">: {{ $user->phone }}</h6>
                             </div>
                             <div class="col-lg-3">
                                 <h6 class="text-gray-800">Alamat</h6>
                             </div>
                             <div class="col-lg-9">
-                                <h6 class="text-muted">: JL Junti Hilir</h6>
+                                <h6 class="text-muted">: {{ $user->address }}</h6>
                             </div>
                             <div class="col-lg-3">
                                 <h6 class="text-gray-800">Desa</h6>
@@ -93,28 +102,29 @@
                             <div class="col-lg-9">
                                 <h6 class="text-muted">: Jawa Barat</h6>
                             </div>
-                            <div class="col-lg-3">
-                                <h6 class="text-gray-800">Kode Pos</h6>
-                            </div>
-                            <div class="col-lg-9">
-                                <h6 class="text-muted">: 40921</h6>
-                            </div>
                             {{-- End No Telepon Detail --}}
                             <div class="col-lg-3">
                                 <h6 class="text-gray-800">Status</h6>
                             </div>
                             <div class="col-lg-9">
                                 : 
-                                <span class="badge badge-success">
-                                Aktif
-                                </span>
-                            </div>
+                                @if ($user->status == 1)
+                                    <span class="badge badge-success">
+                                    Aktif
+                                    </span>
+                                @else
+                                    <span class="badge badge-danger">
+                                    Non Aktif
+                                    </span>
+                                @endif
+                            </div>       
                             <div class="col-lg-12 mt-2 mb-1">
                                 <div class="float-right">
                                     <a href="/members" class="btn btn-sm btn-outline-secondary">Kembali</a>
-                                    <a href="/members/id/reset" class="btn btn-sm btn-outline-success">Kirim Atur Ulang Kata Sandi</a>
-                                    <a href="/members/id/edit" class="btn btn-sm btn-outline-primary">Ubah</a>
+                                    <a href="/members/{{ $user->id }}/reset" class="btn btn-sm btn-outline-success">Kirim Atur Ulang Kata Sandi</a>
+                                    <a href="/members/{{ $user->id }}/edit" class="btn btn-sm btn-outline-primary">Ubah</a>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

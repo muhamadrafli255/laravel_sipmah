@@ -7,7 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    @include('components.styles.main')
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/ruang-admin.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/mystyle.css">
+@yield('style')
 </head>
 
 <body id="page-top">
@@ -25,7 +29,23 @@
     </div>
 
     @include('components.scroll')
-    @include('components.scripts.main')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/0661b15b8c.js" crossorigin="anonymous"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/js/ruang-admin.js"></script>
+    @yield('script')
+{{-- Datatables --}}
+{{-- <script src="/vendor/datatables/jquery.dataTables.min.js"></script> --}}
+
+
+{{-- <script>
+$(document).ready(function(){
+    $('#selectKategori').chosen();
+});
+</script> --}}
 </body>
 
 </html>

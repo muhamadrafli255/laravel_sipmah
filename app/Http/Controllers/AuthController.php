@@ -83,7 +83,7 @@ class AuthController extends Controller
             ]);
 
             $token = $generateToken->token;
-            Mail::send('contents.mail.activation', ['token' => $token, 'title' => 'Aktivasi Akun'], function($message) use($request){
+            Mail::send('contents.mail.activation', ['token' => $token, 'name' => $request->name], function($message) use($request){
                 $message->to($request->email)->subject('Aktivasi Akun SIPMah');
             });
 
@@ -145,7 +145,7 @@ class AuthController extends Controller
         ]);
 
         $token = $generateToken->token;
-        Mail::send('contents.mail.forgot', ['token' => $token, 'title' => 'Atur Ualng Kata Sandi'], function($message) use($request){
+        Mail::send('contents.mail.forgot', ['token' => $token, 'name' => $data->name], function($message) use($request){
                 $message->to($request->email)->subject('Atur Ulang Kata Sandi');
         });
 

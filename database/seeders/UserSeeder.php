@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $admin = User::create([
-            'identifier_number' =>  216662166621,
+            'identifier_number' =>  2022098789098765,
             'name'              =>  'Admin',
             'email'             =>  'admin@sipmah.id',
             'email_verified_at' =>  now(),
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
         $admin->assignRole('admin');
 
         $officer = User::create([
-            'identifier_number' =>  216662177621,
+            'identifier_number' =>  216622121,
             'name'              =>  'Petugas',
             'email'             =>  'petugas@sipmah.id',
             'email_verified_at' =>  now(),
@@ -72,7 +72,7 @@ class UserSeeder extends Seeder
         $member->assignRole('member');
 
         $member = User::create([
-            'identifier_number' =>  53124325150,
+            'identifier_number' =>  531243250,
             'name'              =>  'Pandu Wisesa',
             'email'             =>  'pandu.an@gmail.com',
             'email_verified_at' =>  now(),
@@ -86,7 +86,7 @@ class UserSeeder extends Seeder
         $member->assignRole('member');
 
         $member = User::create([
-            'identifier_number' =>  531244345330,
+            'identifier_number' =>  531345330,
             'name'              =>  'Guntur Surya Pratama',
             'email'             =>  'gntrsryprtama@gmail.com',
             'email_verified_at' =>  now(),

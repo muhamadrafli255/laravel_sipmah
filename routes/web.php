@@ -81,39 +81,8 @@ Route::group([
     'namespace'     =>  'App',
     'middleware'    =>  ['auth']
 ], function(){
-    Route::prefix('dashboard')->group(function()
-    {
-        Route::get('/', [DashboardController::class, 'index']);
-    });
-
-    Route::prefix('home')->group(function()
-    {
-        Route::get('/', [HomeController::class, 'index']);
-    });
 
     Route::get('/logout', [AuthController::class, 'logout']);
-
-    Route::prefix('members')->group(function()
-    {
-        Route::get('/', [MemberController::class, 'index']);
-        Route::get('/create', [MemberController::class, 'create']);
-        Route::post('/store', [MemberController::class, 'store']);
-        Route::get('/{id}', [MemberController::class, 'detail']);
-        Route::get('/{id}/edit', [MemberController::class, 'edit']);
-        Route::post('/{id}/update', [MemberController::class, 'update']);
-        Route::get('/{id}/delete', [MemberController::class, 'delete']);
-    });
-
-    Route::prefix('officers')->group(function()
-    {
-        Route::get('/', [OfficerController::class, 'index']);
-        Route::get('/create', [OfficerController::class, 'create']);
-        Route::post('/store', [OfficerController::class, 'store']);
-        Route::get('/{id}', [OfficerController::class, 'detail']);
-        Route::get('/{id}/edit', [OfficerController::class, 'edit']);
-        Route::post('/{id}/update', [OfficerController::class, 'update']);
-        Route::get('/{id}/delete', [OfficerController::class, 'delete']);
-    });
 
     Route::prefix('categories')->group(function()
     {
@@ -177,5 +146,73 @@ Route::group([
         Route::get('/books', [ReportController::class, 'books']);
         Route::get('/borrowed', [ReportController::class, 'borrowed']);
         Route::get('/members', [ReportController::class, 'members']);
+    });
+});
+
+Route::group([
+    'namespace'     =>  'app',
+    'middleware'    =>  ['auth', 'role:admin'],
+], function(){
+
+    Route::prefix('dashboard')->group(function()
+    {
+        Route::get('/', [DashboardController::class, 'index']);
+    });
+
+    Route::prefix('members')->group(function()
+    {
+        Route::get('/', [MemberController::class, 'index']);
+        Route::get('/create', [MemberController::class, 'create']);
+        Route::post('/store', [MemberController::class, 'store']);
+        Route::get('/{id}', [MemberController::class, 'detail']);
+        Route::get('/{id}/edit', [MemberController::class, 'edit']);
+        Route::post('/{id}/update', [MemberController::class, 'update']);
+        Route::get('/{id}/update/status', [MemberController::class, 'updateStatus']);
+        Route::get('/{id}/delete', [MemberController::class, 'delete']);
+        Route::get('/{id}/reset', [MemberController::class, 'mailReset']);
+    });
+
+    Route::prefix('officers')->group(function()
+    {
+        Route::get('/', [OfficerController::class, 'index']);
+        Route::get('/create', [OfficerController::class, 'create']);
+        Route::post('/store', [OfficerController::class, 'store']);
+        Route::get('/{id}', [OfficerController::class, 'detail']);
+        Route::get('/{id}/edit', [OfficerController::class, 'edit']);
+        Route::post('/{id}/update', [OfficerController::class, 'update']);
+        Route::get('/{id}/delete', [OfficerController::class, 'delete']);
+    });
+
+});
+
+Route::group([
+    'namespace' =>  'app',
+    'middleware'    =>  ['auth', 'role:officer|admin'],
+], function(){
+
+    Route::prefix('members')->group(function()
+    {
+        Route::get('/', [MemberController::class, 'index']);
+        Route::get('/create', [MemberController::class, 'create']);
+        Route::post('/store', [MemberController::class, 'store']);
+        Route::get('/{id}', [MemberController::class, 'detail']);
+        Route::get('/{id}/edit', [MemberController::class, 'edit']);
+        Route::post('/{id}/update', [MemberController::class, 'update']);
+        Route::get('/{id}/delete', [MemberController::class, 'delete']);
+    });
+
+    Route::prefix('dashboard')->group(function()
+    {
+        Route::get('/', [DashboardController::class, 'index']);
+    });
+});
+
+Route::group([
+    'namespace'     =>  'app',
+    'middleware'    =>  ['auth', 'role:member'],
+], function(){
+    Route::prefix('home')->group(function()
+    {
+        Route::get('/', [HomeController::class, 'index']);
     });
 });

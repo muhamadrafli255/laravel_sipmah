@@ -43,4 +43,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(SubDistrict::class);
     }
+
+    public static function getMembers($request)
+    {
+        $members = User::select(
+            [
+                'id',
+                'identifier_number',
+                'name',
+                'email',
+                'status',
+            ]);
+
+            return $members;
+    }
 }
