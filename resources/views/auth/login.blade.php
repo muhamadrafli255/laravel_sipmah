@@ -31,10 +31,10 @@
                                 <form class="user" action="/login" method="POST">
                                     @csrf
                                     <div class="form-group">
-                                        <input type="email" class="form-control" name="email" placeholder="Alamat Email">
+                                        <input type="email" class="form-control" name="email" placeholder="Alamat Email" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" name="password" placeholder="Kata Sandi">
+                                        <input type="password" class="form-control" name="password" placeholder="Kata Sandi" required>
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small" style="line-height: 1.5rem;">

@@ -1,4 +1,4 @@
-<script src="/plugins/select2/js/select2.full.min.js"></script>
+<script src="{{ asset('/plugins/select2/js/select2.full.min.js') }}"></script>
 <script>
     $.fn.select2.defaults.set('theme', 'bootstrap4')
     function renderSelect2(element, url, placeholder, results, allowClear = false, dropdownParent = 'body') {
@@ -10,7 +10,7 @@
             dropdownParent: $(dropdownParent),
             width: '100%',
             ajax: {
-                url: "/api/provinces",
+                url: url,
                 headers: {
                     'Authorization' : 'Bearer '+ localStorage.getItem('api-token'),
                     'Content-Type' : 'application/json',

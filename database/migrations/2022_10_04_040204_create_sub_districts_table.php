@@ -28,6 +28,6 @@ class CreateSubDistrictsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sub_districts');
+        
     }
 }

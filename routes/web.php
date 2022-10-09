@@ -3,15 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RackController;
+use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PublisherController;
-use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+Route::post('/getcities', [AddressController::class, 'getCities']);
+Route::post('/getdistricts', [AddressController::class, 'getDistricts']);
+Route::post('/getsubdistricts', [AddressController::class, 'getSubDistricts']);
 
 /*
 |--------------------------------------------------------------------------

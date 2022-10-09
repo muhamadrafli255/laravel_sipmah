@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\City;
 use App\Models\User;
+use App\Models\Province;
 use Illuminate\Support\Str;
 use App\Mail\ActivationMail;
 use App\Models\UserActivate;
@@ -48,7 +50,18 @@ class AuthController extends Controller
     public function register()
     {
         $title = "Registrasi";
-        return view('auth.register', compact('title'));
+        $provinces = Province::get();
+        return view('auth.register', compact('title', 'provinces'));
+    }
+
+    public function getcities(Request $request)
+    {
+        $cities = City::where('province_id', $request->province_id)->get();
+
+        foreach($cities as $city)
+        {
+            echo "<option value='$city->id'>$city->name</option>";
+        }
     }
 
     public function store(Request $request)
