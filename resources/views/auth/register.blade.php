@@ -68,10 +68,6 @@
                                                     @foreach ($provinces as $province)
                                                     <option value="{{ $province->id }}">{{ $province->name }}</option>
                                                     @endforeach
-                                                    {{-- <option value="" selected disabled>Provinsi</option>
-                                                    <option value="">Jawa Barat</option>
-                                                    <option value="">Jawa Timur</option>
-                                                    <option value="">Jawa Tengah</option> --}}
                                                 </select>
                                             </div>
                                         </div>
