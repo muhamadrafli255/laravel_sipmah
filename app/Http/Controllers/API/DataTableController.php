@@ -19,4 +19,12 @@ class DataTableController extends Controller
         $data = \App\Models\User::getOfficers($request->query());
         return DataTables::of($data)->make(true);
     }
+
+    public function getCategories(Request $request)
+    {
+        $data = \App\Models\Category::getCategories($request->query());
+        return DataTables::of($data)->addColumn('quantity_books', function($data){
+            return $data->Book->count();
+        })->make(true);
+    }
 }

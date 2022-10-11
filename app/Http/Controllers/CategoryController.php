@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -23,10 +24,11 @@ class CategoryController extends Controller
 
     }
 
-    public function detail()
+    public function detail($id)
     {
         $title = "Detail Kategori";
-        return view('contents.categories.detail', compact('title'));
+        $categories = Category::where('id', $id)->get();
+        return view('contents.categories.detail', compact('title', 'categories'));
     }
 
     public function edit()

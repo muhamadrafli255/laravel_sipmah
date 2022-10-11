@@ -39,3 +39,13 @@ Route::group([
         Route::get('/officers', [DataTableController::class, 'getOfficers']);
     });
 });
+
+Route::group([
+    'namespace' => 'API',
+], function(){
+    Route::group([
+        'prefix' => 'datatables',
+    ], function(){
+        Route::get('/categories', [DataTableController::class, 'getCategories']);
+    });
+});
