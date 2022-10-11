@@ -10,24 +10,26 @@
         </ol>
     </div>
     <div class="container-xl px-4 mt-4 mb-4">
+        <form action="/officers/store" method="POST" enctype="multipart/form-data">
         <!-- Account page navigation-->
         <div class="row">
             <div class="col-xl-4">
                 <!-- Profile picture card-->
-                <div class="card mb-4 mb-xl-0">
+                <div class="card mb-xl-0">
                     <div class="card-header">
                         <p class="h5 text-gray-800">Foto Profil</p>
                     </div>
                     <div class="card-body text-center">
+                            @csrf
                         <!-- Profile picture image-->
-                        <img class="img-account-profile rounded-circle mb-4"
-                            src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="" width="170px" height="170px">
+                        <img class="img-account-profile rounded-circle mb-4 img-thumbnail img-preview"
+                            src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="" width="240px" height="520px">
                         <div class="small font-italic text-muted mb-4">JPG atau PNG ukuran kurang dari 5 MB</div>
                         <!-- Profile picture upload button-->
                         <div class="form-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" value="Pilih" id="customFile">
-                                <label class="custom-file-label text-left" for="customFile">Unggah Foto</label>
+                                <input type="file" class="form-control-file" name="image" id="image" onchange="previewImage()">
+                                <label class="custom-file-label text-left" for="image">Unggah Foto</label>
                             </div>
                         </div>
                     </div>
@@ -40,31 +42,26 @@
                         <p class="h5 text-gray-800">Data Petugas</p>
                     </div>
                     <div class="card-body">
-                        <form>
                             <!-- Form Group (username)-->
                             <div class="col-lg-12 mb-3">
-                                <label class="small mb-1" for="selectName">Nama Anggota</label>
-                                <select name="" id="selectName" class="form-control">
-                                    <option value="" selected disabled>Pilih anggota</option>
-                                    <option value="">Rudiansyah Fakhrul | 20221056</option>
-                                    <option value="">Jujun Saputra| 20221057</option>
-                                    <option value="">Dani Fitriani | 20221058</option>
-                                    <option value="">Andara Amanda | 20221059</option>
-                                    <option value="">Queensha Marsya | 20221060</option>
-                                    <option value="">Raina Aqila | 20221061</option>
+                                <label class="small mb-1" for="user">Nama Anggota</label>
+                                <select name="user_id" id="user" class="form-control">
+                                    <option>Pilih anggota</option>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name." | ".$user->identifier_number }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                                 <!-- Form Group (first name)-->
                                 <div class="col-lg-12">
-                                    <label class="small mb-1" for="inputFirstName">Alamat Email</label>
-                                    <input class="form-control" id="inputEmail" type="email"
-                                        placeholder="Email Petugas" value="rudiansyah@example.com" disabled>
+                                    <label class="small mb-1" for="email">Alamat Email</label>
+                                    <input type="email" class="form-control" id="email" value="" disabled>
                                 </div>
                             <!-- Save changes button-->
                             <div class="col-lg-12 mt-5">
                                 <div class="float-right">
                                     <a href="/officers" class="btn btn-outline-secondary mt-5" type="button">Kembali</a>
-                                    <a href="/officers/store" class="btn btn-outline-primary mt-5" type="button">Tambah</a>
+                                    <button type="submit" class="btn btn-outline-primary mt-5" type="button">Tambah</button>
                                 </div>
                             </div>
                         </form>
@@ -74,4 +71,6 @@
         </div>
     </div>
 </div>
+@include('components.scripts.getuser')
+@include('components.scripts.preview')
 @endsection

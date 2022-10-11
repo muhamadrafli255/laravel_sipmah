@@ -185,6 +185,7 @@ Route::group([
         Route::get('/{id}/edit', [OfficerController::class, 'edit']);
         Route::post('/{id}/update', [OfficerController::class, 'update']);
         Route::get('/{id}/delete', [OfficerController::class, 'delete']);
+        Route::post('/getuser', [OfficerController::class, 'getUser']);
     });
 
 });

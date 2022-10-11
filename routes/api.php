@@ -32,7 +32,10 @@ Route::group([
 
 Route::group([
     'namespace' => 'API',
-], function()
-{
-    Route::get('/provinces', [AddressController::class, 'getProvinces']);
+], function(){
+    Route::group([
+        'prefix' => 'datatables',
+    ], function(){
+        Route::get('/officers', [DataTableController::class, 'getOfficers']);
+    });
 });

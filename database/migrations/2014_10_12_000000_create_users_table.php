@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('sub_district_id');
             $table->text('address');
             $table->string('image')->nullable();
+            $table->integer('role_id')->default(3);
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

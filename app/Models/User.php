@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -41,7 +40,7 @@ class User extends Authenticatable
 
     public function SubDistrict()
     {
-        return $this->hasMany(SubDistrict::class);
+        return $this->belongsTo(SubDistrict::class);
     }
 
     public static function getMembers($request)
@@ -54,6 +53,21 @@ class User extends Authenticatable
                 'email',
                 'status',
             ]);
+
+            return $members;
+    }
+
+    public static function getOfficers($request)
+    {
+        $members = User::select(
+            [
+                'id',
+                'identifier_number',
+                'name',
+                'email',
+                'status',
+                'role_id',
+            ])->where('role_id', 2);
 
             return $members;
     }

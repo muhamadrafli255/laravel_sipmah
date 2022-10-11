@@ -25,7 +25,8 @@ class UserSeeder extends Seeder
             'status'            =>  1,
             'phone'             =>  83890876434,
             'sub_district_id'   =>  3204180009,
-            'address'           =>  'Kp Cigarantang RT02 RW12'
+            'address'           =>  'Kp Cigarantang RT02 RW12',
+            'role_id'           =>  1,
         ]);
         $admin->assignRole('admin');
 
@@ -39,7 +40,8 @@ class UserSeeder extends Seeder
             'status'            =>  1,
             'phone'             =>  83890812334,
             'sub_district_id'   =>  3204180009,
-            'address'           =>  'Kp Cigarantang RT02 RW12'
+            'address'           =>  'Kp Cigarantang RT02 RW12',
+            'role_id'           =>  2,
         ]);
         $officer->assignRole('officer');
 
@@ -53,7 +55,7 @@ class UserSeeder extends Seeder
             'status'            =>  1,
             'phone'             =>  8915007323241,
             'sub_district_id'   =>  3204180009,
-            'address'           =>  'Kp Solokan Gawir RT01 RW14'
+            'address'           =>  'Kp Solokan Gawir RT01 RW14',
         ]);
         $member->assignRole('member');
 

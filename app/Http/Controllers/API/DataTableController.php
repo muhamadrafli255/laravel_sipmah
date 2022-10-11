@@ -13,4 +13,10 @@ class DataTableController extends Controller
         $data = \App\Models\User::getMembers($request->query());
         return DataTables::of($data)->make(true);
     }
+
+    public function getOfficers(Request $request)
+    {
+        $data = \App\Models\User::getOfficers($request->query());
+        return DataTables::of($data)->make(true);
+    }
 }
