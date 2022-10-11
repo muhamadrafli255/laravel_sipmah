@@ -91,43 +91,36 @@
                                     <textarea name="address" id="" cols="20" rows="10" placeholder="Alamat Anggota" class="form-control">{{ $user->address }}</textarea>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="small mb-1" for="selectProvinsi">Provinsi</label>
-                                    <select class="form-control" name="" id="selectProvinsi" required>
-                                        <option value="1">Jawa Barat</option>
-                                        <option value="">Jawa Tengah</option>
-                                        <option value="">Jawa Timur</option>
-                                        <option value="">Sumatera Barat</option>
-                                        <option value="">Sumatera Utara</option>
+                                    <label class="small mb-1" for="province">Provinsi</label>
+                                    <select class="form-control" id="province" required>
+                                        @foreach ($provinces as $province)
+                                        <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                        @endforeach
+                                        @foreach ($prov as $p)
+                                            <option value="{{ $p->id }}">{{ $p->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="small mb-1" for="selectKota">Kabupaten / Kota</label>
-                                    <select class="form-control" name="" id="selectKota" required>
-                                        <option value="1">Bandung</option>
-                                        <option value="">Kota Bandung</option>
-                                        <option value="">Purwakarta</option>
-                                        <option value="">Bogor</option>
-                                        <option value="">Cianjur</option>
+                                    <label class="small mb-1" for="cities">Kabupaten / Kota</label>
+                                    <select class="form-control" name="" id="cities" required>
+                                        @foreach ($cities as $city)
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="small mb-1" for="selectKecamatan">Kecamatan</label>
-                                    <select class="form-control" id="selectKecamatan" required>
-                                        <option value="1">Katapang</option>
-                                        <option value="">Arjasari</option>
-                                        <option value="">Baleendah</option>
-                                        <option value="">Kutawaringin</option>
-                                        <option value="">Cangkuang </option>
+                                    <label class="small mb-1" for="districts">Kecamatan</label>
+                                    <select class="form-control" id="districts" required>
+                                        @foreach ($districts as $district)
+                                        <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="small mb-1" for="selectDesa">Desa</label>
-                                    <select class="form-control" name="sub_district_id" id="selectDesa" required>
-                                        <option value="3204180010">Sangkanhurip</option>
-                                        <option value="">Sukamukti</option>
-                                        <option value="">Cilampeni</option>
-                                        <option value="">Gandasari</option>
-                                        <option value="">Katapang</option>
+                                    <label class="small mb-1" for="sub_districts">Desa</label>
+                                    <select class="form-control" name="sub_district_id" id="sub_districts" required>
+                                        <option value="{{ $user->sub_district_id }}">{{ $user->SubDistrict->name }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -146,4 +139,5 @@
         </div>
         @endforeach
 </div>
+@include('components.scripts.selectchange')
 @endsection

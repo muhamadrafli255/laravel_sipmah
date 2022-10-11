@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\User;
+use App\Models\District;
+use App\Models\Province;
 use Illuminate\Support\Str;
 use App\Models\UserActivate;
 use Illuminate\Http\Request;
@@ -21,7 +24,8 @@ class MemberController extends Controller
     public function create()
     {
         $title = "Tambah Anggota";
-        return view('contents.members.create', compact('title'));
+        $provinces = Province::get();
+        return view('contents.members.create', compact('title', 'provinces'));
     }
 
     public function store(Request $request)
@@ -37,17 +41,20 @@ class MemberController extends Controller
             'image'             =>  'image|file|max:5120',
         ]);
 
-        $image = $request->file('image');
-        $validatedData['image'] = time().'.'.$image->extension();
+        if($request->image != null)
+        {
+            $image = $request->file('image');
+            $validatedData['image'] = time().'.'.$image->extension();
+        
+            $destinationPath = public_path('/img/thumbnail');
+            $img = Image::make($image->path());
+            $img->resize(315, 512, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$validatedData['image']);
     
-        $destinationPath = public_path('/img/thumbnail');
-        $img = Image::make($image->path());
-        $img->resize(315, 512, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save($destinationPath.'/'.$validatedData['image']);
-
-        $destinationPath = public_path('/img/profile-images');
-        $image->move($destinationPath, $validatedData['image']);
+            $destinationPath = public_path('/img/profile-images');
+            $image->move($destinationPath, $validatedData['image']);
+        }
 
         $user = User::create(
             [
@@ -87,14 +94,33 @@ class MemberController extends Controller
     {
         $title = "Detail Anggota";
         $users = User::where('id', $id)->get();
-        return view('contents.members.detail', compact('title', 'users'));
+        foreach($users as $user){
+            $districts = District::where('id', $user->SubDistrict->district_id)->get();
+        }
+        foreach($districts as $district){
+            $cities = City::where('id', $district->city_id)->get();
+        }
+        foreach($cities as $city){
+            $provinces = Province::where('id', $city->province_id)->get();
+        }
+        return view('contents.members.detail', compact('title', 'users', 'districts', 'cities', 'provinces'));
     }
 
     public function edit($id)
     {
         $title = "Ubah Anggota";
         $users = User::where('id', $id)->get();
-        return view('contents.members.edit', compact('title', 'users'));
+        $prov = Province::get();
+        foreach($users as $user){
+            $districts = District::where('id', $user->SubDistrict->district_id)->get();
+        }
+        foreach($districts as $district){
+            $cities = City::where('id', $district->city_id)->get();
+        }
+        foreach($cities as $city){
+            $provinces = Province::where('id', $city->province_id)->get();
+        }
+        return view('contents.members.edit', compact('title', 'users', 'districts', 'cities', 'provinces', 'prov'));
     }
 
     public function update(Request $request)
@@ -110,17 +136,20 @@ class MemberController extends Controller
             'image'             =>  'image|file|max:5120',
         ]);
 
-        $image = $request->file('image');
-        $validatedData['image'] = time().'.'.$image->extension();
+        if($request->image != null)
+        {
+            $image = $request->file('image');
+            $validatedData['image'] = time().'.'.$image->extension();
+        
+            $destinationPath = public_path('/img/thumbnail');
+            $img = Image::make($image->path());
+            $img->resize(315, 512, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$validatedData['image']);
     
-        $destinationPath = public_path('/img/thumbnail');
-        $img = Image::make($image->path());
-        $img->resize(315, 512, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save($destinationPath.'/'.$validatedData['image']);
-
-        $destinationPath = public_path('/img/profile-images');
-        $image->move($destinationPath, $validatedData['image']);
+            $destinationPath = public_path('/img/profile-images');
+            $image->move($destinationPath, $validatedData['image']);
+        }
 
         User::where('id', $request->id)->update($validatedData);
 

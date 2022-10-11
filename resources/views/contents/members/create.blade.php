@@ -125,47 +125,30 @@
                                         @enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="small mb-1" for="selectProvince">Provinsi</label>
-                                    <select class="form-control" name="" id="selectProvince" required>
-                                        <option value="" selected disabled>Provinsi</option>
-                                        <option value="1">Jawa Barat</option>
-                                        <option value="2">Jawa Tengah</option>
-                                        <option value="3">Jawa Timur</option>
-                                        <option value="4">Sumatera Barat</option>
-                                        <option value="5">Sumatera Utara</option>
+                                    <label class="small mb-1" for="province">Provinsi</label>
+                                    <select class="form-control" id="province" required>
+                                        <option>Provinsi</option>
+                                        @foreach ($provinces as $province)
+                                        <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="small mb-1" for="selectCity">Kabupaten / Kota</label>
-                                    <select class="form-control" name="" id="selectCity" required>
-                                        <option value="" selected disabled>Kabupaten / Kota</option>
-                                        <option value="1">Bandung</option>
-                                        <option value="2">Kota Bandung</option>
-                                        <option value="3">Purwakarta</option>
-                                        <option value="4">Bogor</option>
-                                        <option value="5">Cianjur</option>
+                                    <label class="small mb-1" for="cities">Kabupaten / Kota</label>
+                                    <select class="form-control" id="cities" required>
+                                        <option>Kabupaten / Kota</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="small mb-1" for="selectDistrict">Kecamatan</label>
-                                    <select class="form-control" id="selectDistrict" required>
-                                        <option value="" selected disabled>Kecamatan</option>
-                                        <option value="1">Katapang</option>
-                                        <option value="2">Arjasari</option>
-                                        <option value="3">Baleendah</option>
-                                        <option value="4">Kutawaringin</option>
-                                        <option value="5">Cangkuang </option>
+                                    <label class="small mb-1" for="districts">Kecamatan</label>
+                                    <select class="form-control" id="districts" required>
+                                        <option>Kecamatan</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="small mb-1" for="selectSubDistrict">Desa</label>
-                                    <select class="form-control" id="selectSubDistrict" name="sub_district_id" required>
-                                        <option value="" selected disabled>Desa</option>
-                                        <option value="3204180010">Sangkanhurip</option>
-                                        <option value="">Sukamukti</option>
-                                        <option value="">Cilampeni</option>
-                                        <option value="">Gandasari</option>
-                                        <option value="">Katapang</option>
+                                    <label class="small mb-1" for="sub_districts">Desa</label>
+                                    <select class="form-control" id="sub_districts" name="sub_district_id" required>
+                                        <option>Desa</option>
                                     </select>
                                 </div>
                             </div>
@@ -181,4 +164,5 @@
             </div>
         </div>
 </div>
+@include('components.scripts.selectchange')
 @endsection

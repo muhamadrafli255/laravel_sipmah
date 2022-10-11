@@ -82,25 +82,31 @@
                                 <h6 class="text-gray-800">Desa</h6>
                             </div>
                             <div class="col-lg-9">
-                                <h6 class="text-muted">: Sangkanhurip</h6>
+                                <h6 class="text-muted">: {{ $user->SubDistrict->name }}</h6>
                             </div>
                             <div class="col-lg-3">
                                 <h6 class="text-gray-800">Kecamatan</h6>
                             </div>
                             <div class="col-lg-9">
-                                <h6 class="text-muted">: Katapang</h6>
+                                @foreach ($districts as $district)
+                                <h6 class="text-muted">: {{ $district->name }}</h6>
+                                @endforeach
                             </div>
                             <div class="col-lg-3">
                                 <h6 class="text-gray-800">Kabupaten / Kota</h6>
                             </div>
                             <div class="col-lg-9">
-                                <h6 class="text-muted">: Bandung</h6>
+                                @foreach ($cities as $city)
+                                <h6 class="text-muted">: {{ $city->name }}</h6>
+                                @endforeach
                             </div>
                             <div class="col-lg-3">
                                 <h6 class="text-gray-800">Provinsi</h6>
                             </div>
                             <div class="col-lg-9">
-                                <h6 class="text-muted">: Jawa Barat</h6>
+                                @foreach ($provinces as $province)
+                                <h6 class="text-muted">: {{ $province->name }}</h6>
+                                @endforeach
                             </div>
                             {{-- End No Telepon Detail --}}
                             <div class="col-lg-3">
@@ -121,7 +127,11 @@
                             <div class="col-lg-12 mt-2 mb-1">
                                 <div class="float-right">
                                     <a href="/members" class="btn btn-sm btn-outline-secondary">Kembali</a>
+                                    @if ($user->status == 1)
                                     <a href="/members/{{ $user->id }}/reset" class="btn btn-sm btn-outline-success">Kirim Atur Ulang Kata Sandi</a>
+                                    @else
+                                    <a href="/members/{{ $user->id }}/update/status" class="btn btn-sm btn-outline-success">Verifikasi</a>
+                                    @endif
                                     <a href="/members/{{ $user->id }}/edit" class="btn btn-sm btn-outline-primary">Ubah</a>
                                 </div>
                                 @endforeach
