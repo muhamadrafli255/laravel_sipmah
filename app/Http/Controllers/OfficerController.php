@@ -53,17 +53,28 @@ class OfficerController extends Controller
     
             $destinationPath = public_path('/img/profile-images');
             $image->move($destinationPath, $validatedData['image']);
+
+            $users = User::where('id', $request->user_id)->get();
+            foreach($users as $user){
+                $user->syncRoles('officer');
+            }
+            User::where('id', $request->user_id)->update([
+                'role_id'   =>  2,
+                'image'     =>  $validatedData['image']
+            ]);
+            return redirect('officers')->with('Berhasil', 'Anggota '.$user->name.' berhasil dijadikan petugas!');
+        }
+        else{
+            $users = User::where('id', $request->user_id)->get();
+            foreach($users as $user){
+                $user->syncRoles('officer');
+            }
+            User::where('id', $request->user_id)->update([
+                'role_id'   =>  2,
+            ]);
+            return redirect('officers')->with('Berhasil', 'Anggota '.$user->name.' berhasil dijadikan petugas!');
         }
         
-        $users = User::where('id', $request->user_id)->get();
-        foreach($users as $user){
-            $user->syncRoles('officer');
-        }
-        User::where('id', $request->user_id)->update([
-            'role_id'   =>  2,
-            'image'     =>  $validatedData['image']
-        ]);
-        return redirect('officers')->with('Berhasil', 'Anggota '.$user->name.' berhasil dijadikan petugas!');
     }
 
     public function detail($id)

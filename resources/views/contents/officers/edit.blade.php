@@ -11,11 +11,12 @@
         <h1 class="h3 mb-0 text-gray-800">{{ $title }}</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/officers">Petugas</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+            @foreach ($users as $user)
+            <li class="breadcrumb-item"><a href="/officers/{{ $user->id }}">{{ $user->name }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ubah</li>
         </ol>
     </div>
         <!-- Account page navigation-->
-        @foreach ($users as $user)
         <form action="/officers/{{ $user->id }}/update" method="POST" enctype="multipart/form-data">
             @csrf
         <div class="row">
@@ -44,7 +45,7 @@
             <div class="col-xl-8">
                 <!-- Account details card-->
                 <div class="card mb-4">
-                    <div class="card-header"><p class="h5 text-gray-800">Data Anggota</p></div>
+                    <div class="card-header"><p class="h5 text-gray-800">Data Petugas</p></div>
                     <div class="card-body">
                             <!-- Form Group (username)-->
                             <div class="mb-3">
