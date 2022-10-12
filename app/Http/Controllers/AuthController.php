@@ -150,20 +150,31 @@ class AuthController extends Controller
 
     public function mailReset(Request $request)
     {
+        $validatedData = $request->validate([
+            'email' => 'required',
+        ]);  
         $getData = User::where('email', $request->email)->get();
-        foreach($getData as $data)
-        $generateToken = UserActivate::create([
-            'user_id'   =>  $data->id,
-            'token'     =>  Str::random(16),
-        ]);
-
-        $token = $generateToken->token;
-        Mail::send('contents.mail.forgot', ['token' => $token, 'name' => $data->name], function($message) use($request){
-                $message->to($request->email)->subject('Atur Ulang Kata Sandi');
-        });
-
-        return redirect('/login')->with('Berhasil', 'Atur ulang kata sandi berhasil
-                                        silahkan cek email anda!');
+        if(User::where('email', $validatedData['email'])->first() == null)
+        {
+            return redirect('/forgot-password')->with('Gagal', 'Email yang anda masukan tidak terdaftar!');
+        }
+        else
+        {
+            foreach($getData as $data){            
+            $generateToken = UserActivate::create([
+                'user_id'   =>  $data->id,
+                'token'     =>  Str::random(16),
+            ]);
+    
+            $token = $generateToken->token;
+            Mail::send('contents.mail.forgot', ['token' => $token, 'name' => $data->name], function($message) use($request){
+                    $message->to($request->email)->subject('Atur Ulang Kata Sandi');
+            });
+    
+            return redirect('/login')->with('Berhasil', 'Atur ulang kata sandi berhasil
+                                            silahkan cek email anda!');
+        }
+        }
     }
 
     public function resetPassword($token)

@@ -12,10 +12,18 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Atur Ulang Kata Sandi</h1>
                                     </div>
+                                    @if (session('Gagal'))
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ session('Gagal') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    @endif
                                     <form class="user" action="/forgot-password" method="POST">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="email" class="form-control" name="email" placeholder="Masukkan Email">
+                                            <input type="email" class="form-control" name="email" placeholder="Masukkan Email" required>
                                         </div>
                                         <div class="form-group">
                                             <button class="btn btn-primary btn-block">Atur Ulang Kata Sandi</button>
