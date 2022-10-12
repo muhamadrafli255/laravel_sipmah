@@ -1,13 +1,13 @@
 @extends('app.main')
 
 @section('style')
-    @include('components.styles.datatable')
+@include('components.styles.datatable')
 @endsection
 
 @section('script')
-    @include('components.scripts.momentjs')
-    @include('components.scripts.datatable')
-    <script src="/app/members/index.js"></script>
+@include('components.scripts.momentjs')
+@include('components.scripts.datatable')
+<script src="/app/members/index.js"></script>
 @endsection
 
 @section('content')
@@ -35,11 +35,14 @@
                             <i class="fa-solid fa-download"></i>
                         </button>
                         <div class="dropdown-menu w-100 text-center">
-                            <button class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fa-solid fa-file-excel"></i>
+                            <button class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i
+                                    class="fa-solid fa-file-excel"></i>
                                 Excel</button>
-                            <button class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fa-solid fa-file-pdf"></i>
+                            <button class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i
+                                    class="fa-solid fa-file-pdf"></i>
                                 PDF</button>
-                            <button class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fa-solid fa-print"></i>
+                            <button class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i
+                                    class="fa-solid fa-print"></i>
                                 Print</button>
                         </div>
                     </div>
@@ -53,43 +56,6 @@
                             </div>
                             <input type="text" id="SearchBox" class="form-control form-control-sm dt-search"
                                 placeholder="Masukan Kata Kunci" aria-label="Username" aria-describedby="basic-addon1">
-                            <div class="btn-group dropright">
-                                <button type="button" class="btn btn-sm btn-outline-info ml-1 rounded"
-                                    data-toggle="modal" data-target="#modalFilter">
-                                    <i class="fa-solid fa-filter"></i>
-                                </button>
-                                <div class="modal fade" id="modalFilter" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Penyaringan data</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="">
-                                                    <div class="form-group mb-2">
-                                                        <label for="statusFilter">Status</label>
-                                                        <select name="" id="statusFilter" class="form-control">
-                                                            <option value="" selected disabled>Berdasarkan Status
-                                                            </option>
-                                                            <option value="">Aktif</option>
-                                                            <option value="">Non Aktif</option>
-                                                        </select>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-primary">Saring</button>
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                    data-dismiss="modal">Batal</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="float-right">

@@ -26,7 +26,7 @@ function initDatatable() {
             {
                 data: 'status', name:'status', orderable: true, searchable: true,
                 render: function(data, type, row){
-                    statusBadge = '<span class="badge badge-primary">Aktif</span>';
+                    statusBadge = '<span class="badge badge-success">Aktif</span>';
                     if(data != 1){
                         statusBadge = '<span class="badge badge-danger">Non Aktif</span>'; 
                     }
