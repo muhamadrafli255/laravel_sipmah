@@ -59,12 +59,11 @@
                                         </div>
                                     @enderror
                                     </div>
-                                    <label class="mt-2" for="exampleFormControlSelect1">Alamat</label>
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <select class="form-control" id="province" name="" required>
-                                                    <option>Provinsi</option>
+                                                <select class="form-control" id="province" name="province" required>
+                                                    <option value="">Provinsi</option>
                                                     @foreach ($provinces as $province)
                                                     <option value="{{ $province->id }}">{{ $province->name }}</option>
                                                     @endforeach
@@ -73,15 +72,15 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <select class="form-control" id="cities" required>
-                                                    <option>Kabupaten / Kota</option>
+                                                <select class="form-control" id="cities" name="cities" required>
+                                                    <option value="">Kabupaten / Kota</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <select class="form-control" id="districts" required>
-                                                    <option>Kecamatan</option>
+                                                <select class="form-control" id="districts" name="districts" required>
+                                                    <option value="">Kecamatan</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -89,7 +88,7 @@
                                             <div class="form-group">
                                                 <select class="form-control @error('subDistrict') is-invalid
                                                 @enderror" name="subDistrict" id="sub_districts" required>
-                                                    <option>Desa</option>
+                                                    <option value="">Desa</option>
                                                 </select>
                                             </div>
                                         </div>

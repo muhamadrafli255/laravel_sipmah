@@ -72,6 +72,9 @@ class AuthController extends Controller
             'email'             =>  'email|unique:users',
             'gender'            =>  'required',
             'phone'             =>  'required|min:11|max:14',
+            'province'          =>  'required',
+            'cities'            =>  'required',
+            'districts'         =>  'required',
             'subDistrict'       =>  'required',
             'address'           =>  'required',
         ]);
