@@ -52,14 +52,14 @@ class User extends Authenticatable
                 'name',
                 'email',
                 'status',
-            ]);
+            ])->where('role_id', 3);
 
             return $members;
     }
 
     public static function getOfficers($request)
     {
-        $members = User::select(
+        $officers = User::select(
             [
                 'id',
                 'identifier_number',
@@ -69,6 +69,6 @@ class User extends Authenticatable
                 'role_id',
             ])->where('role_id', 2);
 
-            return $members;
+            return $officers;
     }
 }

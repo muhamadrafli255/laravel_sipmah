@@ -8,7 +8,7 @@
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 ml-4 text-gray-800">{{ $title }}</h1>
+        <h1 class="h3 mb-0 text-gray-800">{{ $title }}</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/members">Anggota</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
@@ -81,7 +81,7 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                        <option selected disabled>Jenis Kelamin</option>
+                                        <option value="">Jenis Kelamin</option>
                                         <option value="1">Laki - Laki</option>
                                         <option value="2">Perempuan</option>
                                     </select>
@@ -112,6 +112,33 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="small mb-1" for="province">Provinsi</label>
+                                    <select class="form-control" id="province" required>
+                                        <option value="">Provinsi</option>
+                                        @foreach ($provinces as $province)
+                                        <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="small mb-1" for="cities">Kabupaten / Kota</label>
+                                    <select class="form-control" id="cities" required>
+                                        <option value="">Kabupaten / Kota</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="small mb-1" for="districts">Kecamatan</label>
+                                    <select class="form-control" id="districts" required>
+                                        <option value="">Kecamatan</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="small mb-1" for="sub_districts">Desa</label>
+                                    <select class="form-control" id="sub_districts" name="sub_district_id" required>
+                                        <option value="">Desa</option>
+                                    </select>
+                                </div>
                                 <div class="col-lg-12 mb-3">
                                     <label class="small mb-1" for="inputAddress">Alamat</label>
                                     <textarea name="address" id="inputAddress" cols="30" rows="10" placeholder="Alamat Lengkap Anggota"
@@ -123,33 +150,6 @@
                                                 {{ $message }}
                                             </div>
                                         @enderror
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="small mb-1" for="province">Provinsi</label>
-                                    <select class="form-control" id="province" required>
-                                        <option>Provinsi</option>
-                                        @foreach ($provinces as $province)
-                                        <option value="{{ $province->id }}">{{ $province->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="small mb-1" for="cities">Kabupaten / Kota</label>
-                                    <select class="form-control" id="cities" required>
-                                        <option>Kabupaten / Kota</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="small mb-1" for="districts">Kecamatan</label>
-                                    <select class="form-control" id="districts" required>
-                                        <option>Kecamatan</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="small mb-1" for="sub_districts">Desa</label>
-                                    <select class="form-control" id="sub_districts" name="sub_district_id" required>
-                                        <option>Desa</option>
-                                    </select>
                                 </div>
                             </div>
                             <div class="col-lg-12">

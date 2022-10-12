@@ -6,11 +6,10 @@
         <h1 class="h3 mb-0 text-gray-800">{{ $title }}</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/members">Anggota</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+            @foreach ($users as $user)
+            <li class="breadcrumb-item active" aria-current="page">{{ $user->name }}</li>
         </ol>
     </div>
-    @foreach ($users as $user)
-    <div class="container-xl px-4 mt-4 mb-4">
         <!-- Account page navigation-->
         <div class="row">
             <div class="col-xl-4">
@@ -29,7 +28,7 @@
             </div>
             <div class="col-xl-8">
                 <!-- Account details card-->
-                <div class="card mb-4 mb-xl-0 py-2">
+                <div class="card mb-4 py-2">
                     <div class="card-header"><p class="h5 text-gray-800">Detail Anggota</p></div>
                     <div class="card-body">
                         <div class="row">
@@ -141,6 +140,5 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>
 @endsection

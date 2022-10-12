@@ -11,11 +11,12 @@
         <h1 class="h3 mb-0 text-gray-800">{{ $title }}</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/members">Anggota</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+            @foreach ($users as $user)
+            <li class="breadcrumb-item"><a href="/members/{{ $user->id }}">{{ $user->name }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ubah</li>
         </ol>
     </div>
         <!-- Account page navigation-->
-        @foreach ($users as $user)
         <form action="/members/{{ $user->id }}/update" method="POST" enctype="multipart/form-data">
             @csrf
         <div class="row">

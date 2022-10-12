@@ -37,7 +37,7 @@ class MemberController extends Controller
             'email'             =>  'required|email|unique:users',
             'phone'             =>  'required|min:11|max:13|unique:users',
             'address'           =>  'required',
-            'sub_district_id'       =>  'required',
+            'sub_district_id'   =>  'required',
             'image'             =>  'image|file|max:5120',
         ]);
 
@@ -54,22 +54,38 @@ class MemberController extends Controller
     
             $destinationPath = public_path('/img/profile-images');
             $image->move($destinationPath, $validatedData['image']);
-        }
 
-        $user = User::create(
-            [
-                'identifier_number' =>  $validatedData['identifier_number'],
-                'name'              =>  $validatedData['name'],
-                'gender'            =>  $validatedData['gender'],
-                'email'             =>  $validatedData['email'],
-                'phone'             =>  $validatedData['phone'],
-                'address'           =>  $validatedData['address'],
-                'sub_district_id'   =>  $validatedData['sub_district_id'],
-                'image'             =>  $validatedData['image'],
-                'password'          =>  Hash::make(Str::random(25)),
-            ]
-        );
-        $user->assignRole('member');
+            $user = User::create(
+                [
+                    'identifier_number' =>  $validatedData['identifier_number'],
+                    'name'              =>  $validatedData['name'],
+                    'gender'            =>  $validatedData['gender'],
+                    'email'             =>  $validatedData['email'],
+                    'phone'             =>  $validatedData['phone'],
+                    'address'           =>  $validatedData['address'],
+                    'sub_district_id'   =>  $validatedData['sub_district_id'],
+                    'image'             =>  $validatedData['image'],
+                    'password'          =>  Hash::make(Str::random(25)),
+                ]
+            );
+            $user->assignRole('member');
+        }
+        else
+        {
+            $user = User::create(
+                [
+                    'identifier_number' =>  $validatedData['identifier_number'],
+                    'name'              =>  $validatedData['name'],
+                    'gender'            =>  $validatedData['gender'],
+                    'email'             =>  $validatedData['email'],
+                    'phone'             =>  $validatedData['phone'],
+                    'address'           =>  $validatedData['address'],
+                    'sub_district_id'   =>  $validatedData['sub_district_id'],
+                    'password'          =>  Hash::make(Str::random(25)),
+                ]
+            );
+            $user->assignRole('member');
+        }
 
         if($user == true)
         {
