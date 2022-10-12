@@ -7,6 +7,7 @@
 @section('script')
     @include('components.scripts.momentjs')
     @include('components.scripts.datatable')
+    @include('components.scripts.role')
     <script src="/app/categories/index.js"></script>
 @endsection
 
@@ -37,6 +38,9 @@
             @endif
             <div class="card mb-4 dt-container">
                 <div class="col-lg-12 mt-3">
+                    @role('member')
+
+                    @else
                     <div class="btn-group dropright">
                         <button type="button" class="btn btn-sm btn-outline-secondary rounded mb-2"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,14 +54,14 @@
                     </div>
                     <a href="/categories/create" class="btn btn-sm btn-outline-primary rounded mb-2"><i
                             class="fa-solid fa-plus"></i> Tambah</a>
-
+                    @endrole
                     <div class="float-right ml-2">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i
                                         class="fa-solid fa-search"></i></span>
                             </div>
-                            <input type="text" id="SearchBox" class="form-control form-control-sm"
+                            <input type="text" id="SearchBox" class="form-control form-control-sm dt-search"
                                 placeholder="Masukan Kata Kunci" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                     </div>
