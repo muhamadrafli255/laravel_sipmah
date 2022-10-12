@@ -10,6 +10,9 @@
         </ol>
     </div>
         <!-- Account page navigation-->
+        @foreach ($categories as $category)
+        <form action="/categories/{{ $category->id }}/update" method="POST">
+            @csrf
         <div class="row">
             <div class="col-xl-12">
                 <!-- Account details card-->
@@ -20,31 +23,19 @@
                             <div class="col-lg-12 mb-2">
                                 <div class="form-group">
                                     <label class="small mb-1" for="inputKode">Kode</label>
-                                    <input type="text" id="inputKode" class="form-control" value="CTG - 01" disabled>
+                                    <input type="text" id="inputKode" class="form-control" value="{{ $category->code }}" readonly>
                                 </div>
                             </div>
                             <div class="col-lg-12 mb-2">
                                 <div class="form-group">
-                                    <label class="small mb-1" for="selectRak">Rak</label>
-                                    <select class="form-control" name="" id="selectRak">
-                                        <option value="" selected disabled>Rak</option>
-                                        <option value="">RCK - 01</option>
-                                        <option value="">RCK - 02</option>
-                                        <option value="">RCK - 03</option>
-                                        <option value="">RCK - 04</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 mb-2">
-                                <div class="form-group">
-                                    <label class="small mb-1" for="inputName">Nama Kategori</label>
-                                    <input type="text" class="form-control" placeholder="Nama Kategori" value="Novel">
+                                    <label class="small mb-1" for="category">Nama Kategori</label>
+                                    <input type="text" class="form-control" id="category" name="name" placeholder="Nama Kategori" value="{{ $category->name }}" required>
                                 </div>
                             </div>
                             <div class="col-lg-12 mt-2">
                                 <div class="float-right">
                                     <a href="/categories" class="btn btn-sm btn-outline-secondary">Kembali</a>
-                                    <a href="/categories/id/update" class="btn btn-sm btn-outline-primary">Ubah</a>
+                                    <button type="submit" class="btn btn-sm btn-outline-primary">Ubah</button>
                                 </div>
                             </div>
                         </div>
@@ -52,5 +43,7 @@
                 </div>
             </div>
         </div>
+    </form>
+    @endforeach
 </div>
 @endsection

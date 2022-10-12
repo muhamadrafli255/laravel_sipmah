@@ -87,4 +87,5 @@ return array(
     'Brick\\Math\\' => array($vendorDir . '/brick/math/src'),
     'Asm89\\Stack\\' => array($vendorDir . '/asm89/stack-cors/src'),
     'App\\' => array($baseDir . '/app'),
+    'Alfa6661\\AutoNumber\\' => array($vendorDir . '/alfa6661/laravel-autonumber/src'),
 );

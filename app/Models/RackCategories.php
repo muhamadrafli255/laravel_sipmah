@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class RackCategories extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['category_id', 'rack_id'];
 }

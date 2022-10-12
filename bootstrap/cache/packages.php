@@ -1,4 +1,11 @@
 <?php return array (
+  'alfa6661/laravel-autonumber' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Alfa6661\\AutoNumber\\AutoNumberServiceProvider',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 

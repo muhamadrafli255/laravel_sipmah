@@ -27,4 +27,10 @@ class DataTableController extends Controller
             return $data->Book->count();
         })->make(true);
     }
+
+    public function getBooksOnCategories(Request $request)
+    {
+        $data = \App\Models\Book::getBooksOnCategories($request->query());
+        return DataTables::of($data)->make(true);
+    }
 }

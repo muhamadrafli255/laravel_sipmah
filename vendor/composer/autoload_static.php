@@ -178,6 +178,7 @@ class ComposerStaticInitdeda9fec9416132d7535b524d0782f8c
         array (
             'Asm89\\Stack\\' => 12,
             'App\\' => 4,
+            'Alfa6661\\AutoNumber\\' => 20,
         ),
     );
 
@@ -508,6 +509,10 @@ class ComposerStaticInitdeda9fec9416132d7535b524d0782f8c
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
+        'Alfa6661\\AutoNumber\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/alfa6661/laravel-autonumber/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -521,10 +526,15 @@ class ComposerStaticInitdeda9fec9416132d7535b524d0782f8c
     );
 
     public static $classMap = array (
+        'Alfa6661\\AutoNumber\\AutoNumber' => __DIR__ . '/..' . '/alfa6661/laravel-autonumber/src/AutoNumber.php',
+        'Alfa6661\\AutoNumber\\AutoNumberServiceProvider' => __DIR__ . '/..' . '/alfa6661/laravel-autonumber/src/AutoNumberServiceProvider.php',
+        'Alfa6661\\AutoNumber\\AutoNumberTrait' => __DIR__ . '/..' . '/alfa6661/laravel-autonumber/src/AutoNumberTrait.php',
+        'Alfa6661\\AutoNumber\\Models\\AutoNumber' => __DIR__ . '/..' . '/alfa6661/laravel-autonumber/src/Models/AutoNumber.php',
+        'Alfa6661\\AutoNumber\\Observers\\AutoNumberObserver' => __DIR__ . '/..' . '/alfa6661/laravel-autonumber/src/Observers/AutoNumberObserver.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-        'App\\Http\\Controllers\\API\\AddressController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/AddressController.php',
         'App\\Http\\Controllers\\API\\DataTableController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/DataTableController.php',
+        'App\\Http\\Controllers\\AddressController' => __DIR__ . '/../..' . '/app/Http/Controllers/AddressController.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
         'App\\Http\\Controllers\\BookController' => __DIR__ . '/../..' . '/app/Http/Controllers/BookController.php',
         'App\\Http\\Controllers\\BorrowController' => __DIR__ . '/../..' . '/app/Http/Controllers/BorrowController.php',

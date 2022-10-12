@@ -162,6 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Alfa6661\AutoNumber\AutoNumberServiceProvider::class,
+
 
         /*
          * Package Service Providers...

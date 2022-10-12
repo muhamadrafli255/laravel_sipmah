@@ -142,8 +142,12 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'email' => [
+            'required'      =>  'Kolom email wajib diisi!',
+            'unique:users'  =>  'Email sudah terdaftar!',
+        ],
+        'name'  =>  [
+            'required'      =>  'Kolom nama wajib diisi!',
         ],
     ],
 
