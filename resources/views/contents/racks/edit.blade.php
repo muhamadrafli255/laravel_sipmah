@@ -1,4 +1,14 @@
 @extends('app.main')
+
+@section('style')
+    <link rel="stylesheet" href="/css/chosen.min.css">
+@endsection
+
+@section('script')
+    @include('components.scripts.choosen')
+    <script src="/js/chosen.jquery.min.js"></script>
+@endsection
+
 @section('content')
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
@@ -24,12 +34,10 @@
                             </div>
                             <div class="col-lg-12 mb-3">
                                 <label class="small mb-1" for="selectKategori">Kategori</label>
-                                <select class="form-control" name="" id="selectKategori" multiple="" data-placeholder="Pilih Kategori">
-                                    <option value="1" selected>Novel</option>
-                                    <option value="2" selected>Biologi</option>
-                                    <option value="3">Filosofi</option>
-                                    <option value="4" selected>Agama</option>
-                                    <option value="5">Komik</option>
+                                <select class="form-control" name="categories[]" id="selectKategori" multiple="" data-placeholder="Pilih Kategori">
+                                    @foreach ($categories as $category)
+                                    <option value="{{ $category->category_id }}" selected>{{ $category->categories->name }}</option>
+                                    @endforeach
                                 </select>
                                 </div>
                             <div class="col-lg-12 mt-2">

@@ -1,4 +1,16 @@
 @extends('app.main')
+
+@section('style')
+    @include('components.styles.datatable')
+@endsection
+
+@section('script')
+    @include('components.scripts.momentjs')
+    @include('components.scripts.datatable')
+    @include('components.scripts.role')
+    <script src="/app/racks/index.js"></script>
+@endsection
+
 @section('content')
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
@@ -16,48 +28,45 @@
                 </button>
             </div>
             @endif
-            <div class="card mb-4">
+            <div class="card mb-4 dt-container">
                 <div class="col-lg-12 mt-3">
-                    @if (Request::is('racks*', 'dashboard2*'))
                     <div class="btn-group dropright">
                         <button type="button" class="btn btn-sm btn-outline-secondary rounded mb-2"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa-solid fa-download"></i>
                         </button>
                         <div class="dropdown-menu w-100 text-center">
-                            <button class="btn btn-sm btn-success col w-75 mb-2"><i class="fa-solid fa-file-excel"></i> Excel</button>
-                            <button class="btn btn-sm btn-danger col w-75 mb-2"><i class="fa-solid fa-file-pdf"></i> PDF</button>
-                            <button class="btn btn-sm btn-secondary col w-75 mb-2"><i class="fa-solid fa-print"></i> Print</button>
+                            <button class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                            <button class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                            <button class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fa-solid fa-print"></i> Print</button>
                         </div>
                     </div>
                     <a href="/racks/create" class="btn btn-sm btn-outline-primary rounded mb-2"><i
                             class="fa-solid fa-plus"></i> Tambah</a>
-                    @else
-
-                    @endif
                     <div class="float-right ml-2">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i
                                         class="fa-solid fa-search"></i></span>
                             </div>
-                            <input type="text" id="SearchBox" class="form-control form-control-sm"
+                            <input type="text" id="SearchBox" class="form-control form-control-sm dt-search"
                                 placeholder="Masukan Kata Kunci" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                     </div>
                     <div class="float-right">
-                        <select name="lengthMenu" id="lengthMenu" class="form-control form-control-sm">
+                        <select name="lengthMenu" id="lengthMenu" class="form-control form-control-sm dt-length">
                             <option value="10">10</option>
-                            <option value="19">20</option>
-                            <option value="49">50</option>
-                            <option value="99">100</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="-1">Semua</option>
                         </select>
                     </div>
                 </div>
                 <hr>
                 <div class="table-responsive p-3">
                     <table class="table align-items-center table-bordered table-striped table-hover w-100"
-                        id="dataTableHover">
+                        id="dtRacks">
                         <thead class="thead-light">
                             <tr>
                                 <th>No</th>
@@ -68,131 +77,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-right">1</td>
-                                <td>RCK - 01</td>
-                                <td class="text-right">1</td>
-                                <td class="text-right">3</td>
-                                <td class="text-center">
-                                    <div class="">
-                                        <a href="{{ Request::is('dashboard3*') ? '/dashboard3/racks/id' : '/racks/id/categories' }}" class="btn btn-sm btn-outline-success"
-                                        data-toggle="tooltip" data-placement="top" title="Detail"><i
-                                            class="fa-solid fa-eye"></i></a>
-                                            @if (Request::is('dashboard3*'))
-                                                
-                                            @else
-                                    <a href="/racks/id/edit" class="btn btn-sm btn-outline-warning" data-toggle="tooltip"
-                                        data-placement="top" title="Ubah"><i
-                                            class="fa-solid fa-pen-to-square"></i></a>
-                                        <span data-toggle="modal" data-target="#modalGagal">
-                                            <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                data-placement="top" title="Hapus"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </span>
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-right">2</td>
-                                <td>RCK - 02</td>
-                                <td class="text-right">1</td>
-                                <td class="text-right">3</td>
-                                <td class="text-center">
-                                    <div class="">
-                                        <a href="{{ Request::is('dashboard3*') ? '/dashboard3/racks/id' : '/racks/id' }}" class="btn btn-sm btn-outline-success"
-                                        data-toggle="tooltip" data-placement="top" title="Detail"><i
-                                            class="fa-solid fa-eye"></i></a>
-                                            @if (Request::is('dashboard3*'))
-                                                
-                                            @else
-                                    <a href="/racks/id/edit" class="btn btn-sm btn-outline-warning" data-toggle="tooltip"
-                                        data-placement="top" title="Ubah"><i
-                                            class="fa-solid fa-pen-to-square"></i></a>
-                                        <span data-toggle="modal" data-target="#modalGagal">
-                                            <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                data-placement="top" title="Hapus"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </span>
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-right">3</td>
-                                <td>RCK - 03</td>
-                                <td class="text-right">1</td>
-                                <td class="text-right">3</td>
-                                <td class="text-center">
-                                    <div class="">
-                                        <a href="{{ Request::is('dashboard3*') ? '/dashboard3/racks/id' : '/racks/id' }}" class="btn btn-sm btn-outline-success"
-                                        data-toggle="tooltip" data-placement="top" title="Detail"><i
-                                            class="fa-solid fa-eye"></i></a>
-                                            @if (Request::is('dashboard3*'))
-                                                
-                                            @else
-                                    <a href="/racks/id/edit" class="btn btn-sm btn-outline-warning" data-toggle="tooltip"
-                                        data-placement="top" title="Ubah"><i
-                                            class="fa-solid fa-pen-to-square"></i></a>
-                                        <span data-toggle="modal" data-target="#modalGagal">
-                                            <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                data-placement="top" title="Hapus"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </span>
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-right">4</td>
-                                <td>RCK - 04</td>
-                                <td class="text-right">2</td>
-                                <td class="text-right">0</td>
-                                <td class="text-center">
-                                    <div class="">
-                                        <a href="{{ Request::is('dashboard3*') ? '/dashboard3/racks/id' : '/racks/id' }}" class="btn btn-sm btn-outline-success"
-                                        data-toggle="tooltip" data-placement="top" title="Detail"><i
-                                            class="fa-solid fa-eye"></i></a>
-                                            @if (Request::is('dashboard3*'))
-                                                
-                                            @else
-                                    <a href="/racks/id/edit" class="btn btn-sm btn-outline-warning" data-toggle="tooltip"
-                                        data-placement="top" title="Ubah"><i
-                                            class="fa-solid fa-pen-to-square"></i></a>
-                                        <span data-toggle="modal" data-target="#nonaktifModal">
-                                            <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                data-placement="top" title="Hapus"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </span>
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-right">5</td>
-                                <td>RCK - 05</td>
-                                <td class="text-right">2</td>
-                                <td class="text-right">3</td>
-                                <td class="text-center">
-                                    <div class="">
-                                        <a href="{{ Request::is('dashboard3*') ? '/dashboard3/racks/id' : '/racks/id' }}" class="btn btn-sm btn-outline-success"
-                                        data-toggle="tooltip" data-placement="top" title="Detail"><i
-                                            class="fa-solid fa-eye"></i></a>
-                                            @if (Request::is('dashboard3*'))
-                                                
-                                            @else
-                                    <a href="/racks/id/edit" class="btn btn-sm btn-outline-warning" data-toggle="tooltip"
-                                        data-placement="top" title="Ubah"><i
-                                            class="fa-solid fa-pen-to-square"></i></a>
-                                        <span data-toggle="modal" data-target="#modalGagal">
-                                            <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                data-placement="top" title="Hapus"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </span>
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

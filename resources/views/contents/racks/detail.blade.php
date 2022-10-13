@@ -1,12 +1,26 @@
 @extends('app.main')
+
+@section('style')
+    @include('components.styles.datatable')
+@endsection
+
+@section('script')
+    @include('components.scripts.momentjs')
+    @include('components.scripts.datatable')
+    @include('components.scripts.racksid')
+    <script src="/app/categoriesonracks/index.js"></script>
+@endsection
+
 @section('content')
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{ $title }}</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/officers">Rak</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+            <li class="breadcrumb-item"><a href="/racks">Rak</a></li>
+            @foreach ($racks as $rack)
+            <li class="breadcrumb-item active" aria-current="page">{{ $rack->code }}</li>
+            @endforeach
         </ol>
     </div>
         <!-- Account page navigation-->
@@ -17,6 +31,10 @@
                     <div class="col-lg-12 mt-3">
                         <div class="float-left">
                             <h5 class="m-2">Kategori Dalam Rak</h5>
+                            @foreach ($racks as $rack)
+                            <h6 class="m-2">Kode Rak : {{ $rack->code }}</h6>
+                            <h6 class="m-2">Jumlah Kategori : {{ $rack->categories->count() }}</h6>
+                            @endforeach
                         </div>
                         <div class="float-right ml-2">
                             <div class="input-group input-group-sm">
@@ -40,7 +58,7 @@
                     <hr>
                     <div class="table-responsive p-3">
                         <table class="table align-items-center table-bordered table-striped table-hover w-100"
-                            id="dataTableHover">
+                            id="dtCategoriesOnRacks">
                             <thead class="thead-light">
                                 <tr>
                                     <th>No</th>
@@ -50,78 +68,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-right">1</td>
-                                    <td>Novel</td>
-                                    <td class="text-right">6</td>
-                                    <td class="text-center">
-                                        <div class="">
-                                            <a href="{{ Request::is('dashboard3*') ? '/dashboard3/categories/id' : '/racks/id/categories/id/books' }}" class="btn btn-sm btn-outline-success"
-                                            data-toggle="tooltip" data-placement="top" title="Detail"><i
-                                                class="fa-solid fa-eye"></i></a>
-                                                @if (Request::is('dashboard3*'))
-                                                    
-                                                @else
-                                        <a href="/categories/id/edit" class="btn btn-sm btn-outline-warning" data-toggle="tooltip"
-                                            data-placement="top" title="Ubah"><i
-                                                class="fa-solid fa-pen-to-square"></i></a>
-                                            <span data-toggle="modal" data-target="#modalGagal">
-                                                <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                    data-placement="top" title="Hapus"><i
-                                                        class="fa-solid fa-trash"></i></button>
-                                            </span>
-                                                @endif
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-right">2</td>
-                                    <td>Biologi</td>
-                                    <td class="text-right">3</td>
-                                    <td class="text-center">
-                                        <div class="">
-                                            <a href="{{ Request::is('dashboard3*') ? '/dashboard3/categories/id' : '/categories/id' }}" class="btn btn-sm btn-outline-success"
-                                            data-toggle="tooltip" data-placement="top" title="Detail"><i
-                                                class="fa-solid fa-eye"></i></a>
-                                                @if (Request::is('dashboard3*'))
-                                                    
-                                                @else
-                                        <a href="/categories/id/edit" class="btn btn-sm btn-outline-warning" data-toggle="tooltip"
-                                            data-placement="top" title="Ubah"><i
-                                                class="fa-solid fa-pen-to-square"></i></a>
-                                            <span data-toggle="modal" data-target="#modalGagal">
-                                                <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                    data-placement="top" title="Hapus"><i
-                                                        class="fa-solid fa-trash"></i></button>
-                                            </span>
-                                                @endif
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-right">3</td>
-                                    <td>Filosofi</td>
-                                    <td class="text-right">3</td>
-                                    <td class="text-center">
-                                        <div class="">
-                                            <a href="{{ Request::is('dashboard3*') ? '/dashboard3/categories/id' : '/categories/id' }}" class="btn btn-sm btn-outline-success"
-                                            data-toggle="tooltip" data-placement="top" title="Detail"><i
-                                                class="fa-solid fa-eye"></i></a>
-                                                @if (Request::is('dashboard3*'))
-                                                    
-                                                @else
-                                        <a href="/category/id/edit" class="btn btn-sm btn-outline-warning" data-toggle="tooltip"
-                                            data-placement="top" title="Ubah"><i
-                                                class="fa-solid fa-pen-to-square"></i></a>
-                                            <span data-toggle="modal" data-target="#modalGagal">
-                                                <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                    data-placement="top" title="Hapus"><i
-                                                        class="fa-solid fa-trash"></i></button>
-                                            </span>
-                                                @endif
-                                        </div>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
