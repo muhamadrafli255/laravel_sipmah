@@ -65,12 +65,45 @@ class RackController extends Controller
     public function edit($id)
     {
         $title = "Ubah Rak";
-        $categories = DB::table('category_rack')->where('rack_id', $id);
-        return view('contents.racks.edit', compact('title', 'categories'));
+        $racks = Rack::where('id', $id)->get();
+        $category = Category::select(['id','name'])->get();
+        return view('contents.racks.edit', compact('title', 'racks', 'category'));
     }
 
-    public function delete()
+    public function update(Request $request, $id)
     {
+        if($request->categories == null)
+        {
+            DB::table('category_rack')->where('rack_id', $id)->delete();
+            return redirect('/racks')->with('Berhasil', 'Rak '.$request->number.' berhasil dirubah!');
+        }
+        else
+        {
+            DB::table('category_rack')->where('rack_id', $id)->delete();
+            $categories = $request->categories;
+            $data = [];
+            foreach($categories as $category){
+            $data[] = [
+                'rack_id'       =>  $id,
+                'category_id'   =>  $category,
+            ];
+            }
+            DB::table('category_rack')->insert($data);
+            return redirect('/racks')->with('Berhasil', 'Rak '.$request->number.' berhasil dirubah!');
+        }
+    }
 
+    public function delete($id)
+    {   
+        $racks = DB::table('category_rack')->where('rack_id', $id)->get();
+        if($racks->count() == 0)
+        {
+            Rack::where('id', $id)->delete();
+            return redirect('/racks')->with('Berhasil', 'Rak, berhasil dihapus!');
+        }
+        else
+        {
+            return redirect('/racks')->with('Gagal', 'Masih ada kategori di dalam rak, silahkan kosongkan terlebih dahulu!');
+        }               
     }
 }
