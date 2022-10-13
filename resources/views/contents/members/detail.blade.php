@@ -19,7 +19,7 @@
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
                         @if ($user->image == null)
-                            <img class="img-account-profile img-thumbnail rounded-circle mb-4" src="/img/man.png" alt="" width="170px" height="170px">
+                            <img class="img-account-profile img-thumbnail rounded-circle mb-4" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="" width="170px" height="170px">
                         @else
                             <img class="img-account-profile rounded-circle mb-4" src="{{ asset('img/profile-images/' . $user->image) }}" alt="{{ $user->image }}" width="170px" height="170px">
                         @endif

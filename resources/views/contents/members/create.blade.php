@@ -112,6 +112,18 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-lg-12 mb-3">
+                                    <label class="small mb-1" for="inputAddress">Alamat</label>
+                                    <textarea name="address" id="inputAddress" cols="30" rows="10" placeholder="Alamat Lengkap Anggota"
+                                        class="form-control @error('address')
+                                            is-invalid
+                                        @enderror" required></textarea>
+                                        @error('address')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="small mb-1" for="province">Provinsi</label>
                                     <select class="form-control" id="province" required>
@@ -138,18 +150,6 @@
                                     <select class="form-control" id="sub_districts" name="sub_district_id" required>
                                         <option value="">Desa</option>
                                     </select>
-                                </div>
-                                <div class="col-lg-12 mb-3">
-                                    <label class="small mb-1" for="inputAddress">Alamat</label>
-                                    <textarea name="address" id="inputAddress" cols="30" rows="10" placeholder="Alamat Lengkap Anggota"
-                                        class="form-control @error('address')
-                                            is-invalid
-                                        @enderror" required></textarea>
-                                        @error('address')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
                                 </div>
                             </div>
                             <div class="col-lg-12">

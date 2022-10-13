@@ -81,6 +81,7 @@ class MemberController extends Controller
                     'phone'             =>  $validatedData['phone'],
                     'address'           =>  $validatedData['address'],
                     'sub_district_id'   =>  $validatedData['sub_district_id'],
+                    'status'            =>  1,
                     'password'          =>  Hash::make(Str::random(25)),
                 ]
             );
