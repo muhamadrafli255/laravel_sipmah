@@ -17,8 +17,6 @@
 
                     success: function(msg){
                         $('#cities').html(msg)
-                        $('#districts').html('')
-                        $('#sub_districts').html('')
                     },
                     error: function(data){
                         console.log('error:',data)
@@ -37,8 +35,7 @@
                     cache: false,
 
                     success: function(msg){
-                        $('#districts').html(msg)
-                        $('#sub_district').html('')
+                        $('#districts').html(msg)             
                     },
                     error: function(data){
                         console.log('error:',data)

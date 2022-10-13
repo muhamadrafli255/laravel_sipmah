@@ -13,9 +13,13 @@ class AddressController extends Controller
     {
         $cities = City::where('province_id', $request->province_id)->get();
 
+        echo "<option>Kabupaten / Kota</option>";
+
         foreach($cities as $city)
         {
-            echo "<option value='$city->id'>$city->name</option>";
+            echo "
+                    <option value='$city->id'>$city->name</option>
+                ";
         }
     }
 
@@ -23,9 +27,13 @@ class AddressController extends Controller
     {
         $districts = District::where('city_id', $request->city_id)->get();
 
+        echo "<option>Kecamatan</option>";
+
         foreach($districts as $district)
         {
-            echo "<option value='$district->id'>$district->name</option>";
+            echo "
+                    <option value='$district->id'>$district->name</option>
+                ";
         }
     }
 
@@ -33,9 +41,13 @@ class AddressController extends Controller
     {
         $subdistricts = SubDistrict::where('district_id', $request->district_id)->get();
 
+        echo "<option>Desa</option>";
+
         foreach($subdistricts as $subdistrict)
         {
-            echo "<option value='$subdistrict->id'>$subdistrict->name</option>";
+            echo "
+                    <option value='$subdistrict->id'>$subdistrict->name</option>
+                ";
         }
     }
 }

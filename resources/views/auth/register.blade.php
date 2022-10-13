@@ -60,6 +60,18 @@
                                     @enderror
                                     </div>
                                     <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <textarea class="form-control @error('address') is-invalid
+                                                @enderror" name="address" rows="3"
+                                                    placeholder="Alamat Lengkap" required></textarea>
+                                                    @error('address')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <select class="form-control" id="province" name="province" required>
@@ -90,18 +102,6 @@
                                                 @enderror" name="subDistrict" id="sub_districts" required>
                                                     <option value="">Desa</option>
                                                 </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <textarea class="form-control @error('address') is-invalid
-                                                @enderror" name="address" rows="3"
-                                                    placeholder="Alamat Lengkap" required></textarea>
-                                                    @error('address')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
                                             </div>
                                         </div>
                                     </div>
