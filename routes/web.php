@@ -105,7 +105,7 @@ Route::group([
         Route::get('/create', [RackController::class, 'create']);
         Route::post('/store', [RackController::class, 'store']);
         Route::get('/{id}/categories', [RackController::class, 'detail']);
-        Route::get('/id/categories/id/books', [RackController::class, 'rackCategories']);
+        Route::get('/{rackId}/categories/{categoryId}/books', [RackController::class, 'rackCategories']);
         Route::get('/{id}/edit', [RackController::class, 'edit']);
         Route::post('/{id}/update', [RackController::class, 'update']);
         Route::get('/{id}/delete', [RackController::class, 'delete']);

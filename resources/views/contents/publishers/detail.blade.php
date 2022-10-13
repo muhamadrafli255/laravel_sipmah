@@ -1,4 +1,16 @@
 @extends('app.main')
+
+@section('style')
+    @include('components.styles.datatable')
+@endsection
+
+@section('script')
+    @include('components.scripts.momentjs')
+    @include('components.scripts.datatable')
+    @include('components.scripts.publishersid')
+    <script src="/app/booksonpublishers/index.js"></script>
+@endsection
+
 @section('content')
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
@@ -8,7 +20,7 @@
         @else
         <h1 class="h3 mb-0 text-gray-800">{{ $title }}</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/officers">Kategori</a></li>
+            <li class="breadcrumb-item"><a href="/publishers">Penerbit</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
         </ol>
         @endif
@@ -19,7 +31,11 @@
             <div class="card mb-4">
                 <div class="col-lg-12 mt-3">
                     <div class="float-left">
-                        <h5 class="m-2">Buku Dalam Penerbit</h5>
+                        <h5 class="m-2">Buku Dengan Penerbit</h5>
+                        @foreach ($publishers as $publisher)
+                        <h6 class="m-2">Penerbit : {{ $publisher->name }}</h6>
+                        <h6 class="m-2">Jumlah Buku : {{ $publisher->Book->count() }}</h6>
+                        @endforeach
                     </div>
                     <div class="float-right ml-2">
                         <div class="input-group input-group-sm">
@@ -43,7 +59,7 @@
                 <hr>
                 <div class="table-responsive p-3">
                     <table class="table align-items-center table-bordered table-striped table-hover w-100"
-                        id="dataTableHover">
+                        id="dtBooksOnPublishers">
                         <thead class="thead-light">
                             <tr>
                                 <th>No</th>
@@ -53,81 +69,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-right">1</td>
-                                <td class="text-center"><img src="https://ebooks.gramedia.com/ebook-covers/42421/image_highres/ID_NUT2018MTH05NUT.jpg" height="122px" alt="..."></td>
-                                <td>Negeri Diujung Tanduk</td>
-                                <td class="text-center">
-                                    <div class="">
-                                        <a href="{{ Request::is('/dashboard3*') ? '/dashboard3/books/id' : '/books/id' }}" class="btn btn-sm btn-outline-success"
-                                        data-toggle="tooltip" data-placement="top" title="Detail"><i
-                                            class="fa-solid fa-eye"></i></a>
-
-                                            @if (Request::is('dashboard2*', 'publishers*'))
-                                    <a href="/books/id/edit" class="btn btn-sm btn-outline-warning" data-toggle="tooltip"
-                                        data-placement="top" title="Ubah"><i
-                                            class="fa-solid fa-pen-to-square"></i></a>
-                                        <span data-toggle="modal" data-target="#nonaktifModal">
-                                            <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                data-placement="top" title="Hapus"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </span>
-                                            @else
-
-                                            @endif
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-right">2</td>
-                                <td class="text-center"><img src="https://ebooks.gramedia.com/ebook-covers/37335/big_covers/ID_GPU2017MTH05AMBA_B.jpg" height="122px" alt=""></td>
-                                <td>Amba</td>
-                                <td class="text-center">
-                                    <div class="">
-                                        <a href="{{ Request::is('dashboard3*') ? '/dashboard3/books/id' : '/books/id' }}" class="btn btn-sm btn-outline-success"
-                                        data-toggle="tooltip" data-placement="top" title="Detail"><i
-                                            class="fa-solid fa-eye"></i></a>
-
-                                            @if (Request::is('dashboard2*', 'books*'))
-                                    <a href="/books/id/edit" class="btn btn-sm btn-outline-warning" data-toggle="tooltip"
-                                        data-placement="top" title="Ubah"><i
-                                            class="fa-solid fa-pen-to-square"></i></a>
-                                        <span data-toggle="modal" data-target="#nonaktifModal">
-                                            <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                data-placement="top" title="Hapus"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </span>
-                                            @else
-
-                                            @endif
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-right">3</td>
-                                <td class="text-center"><img src="https://www.gramedia.com/blog/content/images/2019/05/orang-orang-biasa-4.jpg" height="122px" alt="..."></td>
-                                <td>Orang - Orang Biasa</td>
-                                <td class="text-center">
-                                    <div class="">
-                                        <a href="{{ Request::is('dashboard3*') ? '/dashboard3/books/id' : '/books/id' }}" class="btn btn-sm btn-outline-success"
-                                        data-toggle="tooltip" data-placement="top" title="Detail"><i
-                                            class="fa-solid fa-eye"></i></a>
-
-                                            @if (Request::is('dashboard2*', 'books*'))
-                                    <a href="/books/id/edit" class="btn btn-sm btn-outline-warning" data-toggle="tooltip"
-                                        data-placement="top" title="Ubah"><i
-                                            class="fa-solid fa-pen-to-square"></i></a>
-                                        <span data-toggle="modal" data-target="#nonaktifModal">
-                                            <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                data-placement="top" title="Hapus"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </span>
-                                            @else
-
-                                            @endif
-                                    </div>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

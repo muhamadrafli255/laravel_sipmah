@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\AddressController;
 use App\Http\Controllers\API\DataTableController;
 
 /*
@@ -57,5 +56,45 @@ Route::group([
         'prefix' => 'datatables',
     ], function(){
         Route::get('/categories/books', [DataTableController::class, 'getBooksOnCategories']);
+    });
+});
+
+Route::group([
+    'namespace' => 'API',
+], function(){
+    Route::group([
+        'prefix' => 'datatables',
+    ], function(){
+        Route::get('/racks', [DataTableController::class, 'getRacks']);
+    });
+});
+
+Route::group([
+    'namespace' => 'API',
+], function(){
+    Route::group([
+        'prefix' => 'datatables',
+    ], function(){
+        Route::get('/racks/categories', [DataTableController::class, 'getCategoriesOnRack']);
+    });
+});
+
+Route::group([
+    'namespace' => 'API',
+], function(){
+    Route::group([
+        'prefix' => 'datatables',
+    ], function(){
+        Route::get('/publishers', [DataTableController::class, 'getPublishers']);
+    });
+});
+
+Route::group([
+    'namespace' => 'API',
+], function(){
+    Route::group([
+        'prefix' => 'datatables',
+    ], function(){
+        Route::get('/publishers/books', [DataTableController::class, 'getBooksOnPublishers']);
     });
 });

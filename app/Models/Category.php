@@ -27,13 +27,23 @@ class Category extends Model
         return $this->hasMany(Book::class);
     }
 
-    public static function getCategories()
+    public static function getCategories($request)
     {   
         $categories = Category::select([
             'id',
             'name',
         ]);
 
+        if(isset($request->rack_id)){
+            $categories->where('rack_id', $request['rack_id']);
+        }
+
         return $categories;
+    }
+
+
+    public function racks()
+    {
+        return $this->belongsToMany(Rack::class)->withPivot('rack_id');
     }
 }

@@ -13,8 +13,8 @@
     <link href="/css/ruang-admin.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/mystyle.css">
     <link href="img/logo/logo.png" rel="icon">
+    @yield('style')
     <title>SIPMah - {{ $title }}</title>
-@yield('style')
 </head>
 
 <body id="page-top">

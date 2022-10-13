@@ -1,4 +1,16 @@
 @extends('app.main')
+
+@section('style')
+    @include('components.styles.datatable')
+@endsection
+
+@section('script')
+    @include('components.scripts.momentjs')
+    @include('components.scripts.datatable')
+    @include('components.scripts.role')
+    <script src="/app/publishers/index.js"></script>
+@endsection
+
 @section('content')
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
@@ -16,9 +28,16 @@
                 </button>
             </div>
             @endif
+            @if (session('Gagal'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('Gagal') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endif
             <div class="card mb-4">
                 <div class="col-lg-12 mt-3">
-                    @if (Request::is('publishers*', 'dashboard2/publishers*'))
                     <div class="btn-group dropright">
                         <button type="button" class="btn btn-sm btn-outline-secondary rounded mb-2"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,9 +54,6 @@
                     </div>
                     <a href="/publishers/create" class="btn btn-sm btn-outline-primary rounded mb-2"><i
                             class="fa-solid fa-plus"></i> Tambah</a>
-                    @else
-
-                    @endif
                     <div class="float-right ml-2">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
@@ -60,11 +76,10 @@
                 <hr>
                 <div class="table-responsive p-3">
                     <table class="table align-items-center table-bordered table-striped table-hover w-100"
-                        id="dataTableHover">
+                        id="dtPublishers">
                         <thead class="thead-light">
                             <tr>
                                 <th>No</th>
-                                <th>Kode Penerbit</th>
                                 <th>Nama Penerbit</th>
                                 <th>Alamat Penerbit</th>
                                 <th>Email Penerbit</th>
@@ -74,127 +89,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-right">1</td>
-                                <td>PNB - 01</td>
-                                <td>Gramedia</td>
-                                <td>Bandung</td>
-                                <td>customercare@gramedia.com</td>
-                                <td>0225405765</td>
-                                <td>29</td>
-                                <td class="text-center">
-                                    <div class="">
-                                        <a href="{{ Request::is('dashboard3*') ? '/dashboard3/publishers/id' : '/publishers/id/books' }}"
-                                            class="btn btn-sm btn-outline-success" data-toggle="tooltip"
-                                            data-placement="top" title="Detail">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-
-                                        @if (Request::is('dashboard2*', 'publishers*'))
-                                        <a href="/publishers/id/edit" class="btn btn-sm btn-outline-warning"
-                                            data-toggle="tooltip" data-placement="top" title="Ubah"><i
-                                                class="fa-solid fa-pen-to-square"></i></a>
-                                        <span data-toggle="modal" data-target="#modalGagal">
-                                            <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                data-placement="top" title="Hapus"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </span>
-                                        @else
-
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-right">2</td>
-                                <td>PNB - 02</td>
-                                <td>Erlangga</td>
-                                <td>Jakarta</td>
-                                <td>webmaster@erlangga.co.id</td>
-                                <td>02187794609</td>
-                                <td>27</td>
-                                <td class="text-center">
-                                    <div class="">
-                                        <a href="{{ Request::is('dashboard3*') ? '/dashboard3/publishers/id' : '/publishers/id' }}"
-                                            class="btn btn-sm btn-outline-success" data-toggle="tooltip"
-                                            data-placement="top" title="Detail">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        @if (Request::is('dashboard2*', 'publishers*'))
-                                        <a href="/publishers/id/edit" class="btn btn-sm btn-outline-warning"
-                                            data-toggle="tooltip" data-placement="top" title="Ubah"><i
-                                                class="fa-solid fa-pen-to-square"></i></a>
-                                        <span data-toggle="modal" data-target="#modalGagal">
-                                            <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                data-placement="top" title="Hapus"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </span>
-                                        @else
-
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-right">3</td>
-                                <td>PNB - 03</td>
-                                <td>Bentang Pustaka</td>
-                                <td>Yogyakarta</td>
-                                <td>promosi@bentangpustaka.com</td>
-                                <td>02747370635</td>
-                                <td>24</td>
-                                <td class="text-center">
-                                    <div class="">
-                                        <a href="{{ Request::is('dashboard3*') ? '/dashboard3/publishers/id' : '/publishers/id' }}"
-                                            class="btn btn-sm btn-outline-success" data-toggle="tooltip"
-                                            data-placement="top" title="Detail">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        @if (Request::is('dashboard2*', 'publishers*'))
-                                        <a href="/publishers/id/edit" class="btn btn-sm btn-outline-warning"
-                                            data-toggle="tooltip" data-placement="top" title="Ubah"><i
-                                                class="fa-solid fa-pen-to-square"></i></a>
-                                        <span data-toggle="modal" data-target="#modalGagal">
-                                            <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                data-placement="top" title="Hapus"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </span>
-                                        @else
-
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-right">4</td>
-                                <td>PNB - 04</td>
-                                <td>Mizan Pustaka</td>
-                                <td>Bandung</td>
-                                <td>penerbitan@andipublisher.com</td>
-                                <td>0227834310</td>
-                                <td>12</td>
-                                <td class="text-center">
-                                    <div class="">
-                                        <a href="{{ Request::is('dashboard3*') ? '/dashboard3/publishers/id' : '/publishers/id' }}"
-                                            class="btn btn-sm btn-outline-success" data-toggle="tooltip"
-                                            data-placement="top" title="Detail">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        @if (Request::is('dashboard2*', 'publishers*'))
-                                        <a href="/publishers/id/edit" class="btn btn-sm btn-outline-warning"
-                                            data-toggle="tooltip" data-placement="top" title="Ubah"><i
-                                                class="fa-solid fa-pen-to-square"></i></a>
-                                        <span data-toggle="modal" data-target="#modalGagal">
-                                            <button class="btn btn-sm btn-outline-danger" data-toggle="tooltip"
-                                                data-placement="top" title="Hapus"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </span>
-                                        @else
-
-                                        @endif
-                                    </div>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

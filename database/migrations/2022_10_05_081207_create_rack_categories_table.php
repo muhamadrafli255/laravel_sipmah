@@ -13,11 +13,10 @@ class CreateRackCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rack_categories', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('rack_id');
-            $table->foreignId('category_id');
-            $table->timestamps();
+        Schema::create('category_rack', function (Blueprint $table) {
+            $table->foreignId('rack_id')->constrained('racks');
+            $table->foreignId('category_id')->constrained('categories');
+            $table->primary(['rack_id', 'category_id']);
         });
     }
 
@@ -28,6 +27,6 @@ class CreateRackCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rack_categories');
+        Schema::dropIfExists('category_rack');
     }
 }

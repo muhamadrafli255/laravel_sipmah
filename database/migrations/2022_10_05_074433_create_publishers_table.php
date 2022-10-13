@@ -18,7 +18,7 @@ class CreatePublishersTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('email');
-            $table->integer('phone');
+            $table->bigInteger('phone');
             $table->softDeletes();
             $table->timestamps();
         });
