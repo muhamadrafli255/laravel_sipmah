@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Rack;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -63,12 +64,13 @@ class CategoryController extends Controller
         $categories = Category::where('id', $id)->get();
         foreach($categories as $category)
         {
-        if($category->Book->count() >= 1){
+        if($category->Book->count() > 0){
             return redirect('/categories')->with('Gagal', 'Masih ada buku didalam kategori ' .$category->name.','.' silahkan kosongkan terlebih dahulu!');
         }
         else
-        {
-            $category->delete();
+        {   
+            DB::table('category_rack')->where('category_id', $id)->delete();
+            Category::where('id', $id)->delete();
             return redirect('/categories')->with('Berhasil', 'Kategori ' .$category->name. ' berhasil dihapus!');
         }
         }
