@@ -15,7 +15,7 @@ class CreateRacksTable extends Migration
     {
         Schema::create('racks', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('code')->unique();
             $table->integer('number');
             $table->softDeletes();
             $table->timestamps();

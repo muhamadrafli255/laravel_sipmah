@@ -38,5 +38,17 @@ class PublisherSeeder extends Seeder
             'email'     =>  'customercare@gramedia.com',
             'phone'     =>  2178312728,
         ]);
+        Publisher::create([
+            'name'      =>  'Mizan Pustaka',
+            'address'   =>  'Bandung',
+            'email'     =>  'customercare@gramedia.com',
+            'phone'     =>   227834310,
+        ]);
+        Publisher::create([
+            'name'      =>  'Pusat Kurikulum Dan Perbukuan',
+            'address'   =>  'Jakarta',
+            'email'     =>  'buku@kemdikbud.go.id',
+            'phone'     =>   213804248,
+        ]);
     }
 }

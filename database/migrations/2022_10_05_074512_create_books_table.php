@@ -19,6 +19,7 @@ class CreateBooksTable extends Migration
             $table->string('code');
             $table->string('title');
             $table->text('synopsis');
+            $table->string('writer');
             $table->foreignId('publisher_id');
             $table->tinyInteger('condition_book');
             $table->year('publication_year');
