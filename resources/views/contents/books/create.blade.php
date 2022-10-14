@@ -1,4 +1,9 @@
 @extends('app.main')
+
+@section('script')
+    @include('components.scripts.preview')
+@endsection
+
 @section('content')
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
@@ -9,8 +14,9 @@
             <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
         </ol>
     </div>
-    <div class="container-xl px-4 mt-4 mb-4">
         <!-- Account page navigation-->
+        <form action="/books/store" method="POST" enctype="multipart/form-data">
+            @csrf
         <div class="row">
             <div class="col-xl-4">
                 <!-- Profile picture card-->
@@ -20,14 +26,14 @@
                     </div>
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
-                        <img class="img-fluid mb-4"
+                        <img class="img-fluid mb-4 rounded img-preview"
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUfytN3doVZit6vSK5E3BngqpmSwoSADfK5Q&usqp=CAU" alt="" width="170px" height="170px">
                         <div class="small font-italic text-muted mb-4">JPG atau PNG ukuran kurang dari 5 MB</div>
                         <!-- Profile picture upload button-->
                         <div class="form-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" value="Pilih" id="customFile">
-                                <label class="custom-file-label text-left" for="customFile">Unggah Foto</label>
+                                <input type="file" name="image" class="custom-file-input" id="image" onchange="previewImage()">
+                                <label class="custom-file-label text-left" for="image">Unggah Foto</label>
                             </div>
                         </div>
                     </div>
@@ -40,33 +46,28 @@
                         <p class="h5 text-gray-800">Data Buku</p>
                     </div>
                     <div class="card-body">
-                        <form action="/books/store">
                             <!-- Form Group (username)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputTitle">Judul</label>
                                 <input class="form-control" id="inputTitle" type="text"
-                                    placeholder="Judul Buku" value="" required>
+                                    placeholder="Judul Buku" name="title" value="" required>
                             </div>
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
                                 <!-- Form Group (first name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputCategory">Kategori</label>
-                                    <select name="" id="inputCategory" class="form-control">
-                                        <option value="" selected disabled>Kategori Buku</option>
-                                        <option value="">Novel</option>
-                                        <option value="">Filosofi</option>
-                                        <option value="">Matematika</option>
-                                        <option value="">Biologi</option>
-                                        <option value="">Filsafat</option>
-                                        <option value="">Teknologi</option>
-                                        <option value="">Agama</option>
+                                    <select name="category_id" id="inputCategory" class="form-control">
+                                        <option selected>Kategori Buku</option>
+                                        @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <!-- Form Group (last name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputWriter">Penulis</label>
-                                    <input class="form-control" id="inputWriter" type="text"
+                                    <input class="form-control" name="writer" id="inputWriter" type="text"
                                         placeholder="Penulis Buku" value="" required> 
                                 </div>
                             </div>
@@ -74,18 +75,17 @@
                                 <!-- Form Group (first name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputStatus">Kondisi</label>
-                                    <select name="" id="inputStatus" class="form-control">
-                                        <option value="" selected disabled>Kondisi Buku</option>
-                                        <option value="">Baru</option>
-                                        <option value="">Baik</option>
-                                        <option value="">Rusak</option>
-                                        <option value="">Hilang</option>
+                                    <select name="condition_book" id="inputStatus" class="form-control">
+                                        <option selected disabled>Kondisi Buku</option>
+                                        <option value="1">Baik</option>
+                                        <option value="2">Rusak</option>
+                                        <option value="3">Hilang</option>
                                     </select>
                                 </div>
                                 <!-- Form Group (last name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputKuantitas">Kuantitas</label>
-                                    <input class="form-control" id="inputKuantitas" type="number"
+                                    <input class="form-control" name="quantity"  id="inputKuantitas" type="number"
                                         placeholder="Kuantitas Buku" value="" required> 
                                 </div>
                             </div>
@@ -93,25 +93,24 @@
                                 <!-- Form Group (first name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputPublisher">Penerbit</label>
-                                    <select name="" id="inputPublisher" class="form-control">
-                                        <option value="" selected disabled>Penerbit Buku</option>
-                                        <option value="">Gramedia</option>
-                                        <option value="">Bentang Pustaka</option>
-                                        <option value="">Erlangga</option>
-                                        <option value="">Mizan Pustaka</option>
+                                    <select name="publisher_id" id="inputPublisher" class="form-control">
+                                        <option selected>Penerbit Buku</option>
+                                        @foreach ($publishers as $publisher)
+                                        <option value="{{ $publisher->id }}">{{ $publisher->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <!-- Form Group (last name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputYear">Tahun Terbit</label>
-                                    <input class="form-control" id="inputYear" type="number" min="1900" max="2022"
+                                    <input class="form-control" name="publication_year" id="inputYear" type="number" min="1900" max="2022"
                                         placeholder="Tahun Terbit Buku" value="" required> 
                                 </div>
                             </div>
                             <!-- Form Group (email address)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputDescription">Deskripsi</label>
-                                <textarea name="" id="inputDescription" cols="30" rows="10" placeholder="Deskripsi Buku"
+                                <textarea name="synopsis" id="inputDescription" cols="30" rows="10" placeholder="Deskripsi Buku"
                                     class="form-control" required></textarea>
                             </div>
                             <!-- Save changes button-->
@@ -127,5 +126,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

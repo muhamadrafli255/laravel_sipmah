@@ -2,13 +2,25 @@
 
 namespace App\Models;
 
-use GuzzleHttp\Psr7\Request;
+use Alfa6661\AutoNumber\AutoNumberTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    use HasFactory;
+    use HasFactory, AutoNumberTrait;
+
+    protected $guarded = ['id'];
+
+    public function getAutoNumberOptions()
+    {
+        return [
+            'code'  =>  [
+                'format'    =>  'BK - ?',
+                'length'    =>  4
+            ]
+            ];
+    }
 
     public function Category()
     {
@@ -50,6 +62,21 @@ class Book extends Model
         {
             $books->where('publisher_id', $request['publisher_id']);
         }
+
+        return $books;
+    }
+
+    public static function getBooks()
+    {
+        $books = Book::select([
+            'id',
+            'code',
+            'category_id',
+            'publisher_id',
+            'title',
+            'writer',
+            'publication_year',
+        ]);
 
         return $books;
     }

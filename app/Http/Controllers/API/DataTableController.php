@@ -63,4 +63,14 @@ class DataTableController extends Controller
         $data = \App\Models\Book::getBooksOnPublishers($request->query());
         return DataTables::of($data)->make(true);
     }
+
+    public function getBooks(Request $request)
+    {
+        $data = \App\Models\Book::getBooks($request->query());
+        return DataTables::of($data)->addColumn('category_name', function($data){
+            return $data->Category->name;
+        })->addColumn('publisher_name', function($data){
+            return $data->publisher->name;
+        })->make(true);
+    }
 }

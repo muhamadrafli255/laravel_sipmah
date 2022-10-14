@@ -15,7 +15,11 @@ function initDatatable() {
                 }
             },
             {
-                data: 'image', name: 'image', orderable: true, searchable: true
+                data: 'image', name: 'image', orderable: false, searchable: false,
+                render: function(data, type,){
+                    const imagePath = "/img/book-images/";
+                    return '<img src="'+ imagePath +'' + data +'" class="rounded" height="350px" width="200px"/>'
+                }
             },
             {
                 data: 'title', name: 'title', orderable: true, searchable: true

@@ -149,7 +149,7 @@ class MemberController extends Controller
             'email'             =>  'required|email',
             'phone'             =>  'required|min:11|max:13',
             'address'           =>  'required',
-            'sub_district_id'       =>  'required',
+            'sub_district_id'   =>  'required',
             'image'             =>  'image|file|max:5120',
         ]);
 

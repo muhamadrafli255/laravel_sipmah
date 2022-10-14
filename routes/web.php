@@ -125,8 +125,8 @@ Route::group([
     Route::prefix('books')->group(function()
     {
         Route::get('/', [BookController::class, 'index']);
-        Route::get('/id', [BookController::class, 'detail']);
         Route::get('/create', [BookController::class, 'create']);
+        Route::get('/{id}', [BookController::class, 'detail']);
         Route::post('/store', [BookController::class, 'store']);
         Route::get('/{id}/edit', [BookController::class, 'edit']);
         Route::post('/{id}/update', [BookController::class, 'update']);
