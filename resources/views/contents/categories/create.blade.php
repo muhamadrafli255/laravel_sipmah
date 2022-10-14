@@ -24,8 +24,15 @@
                             <div class="col-lg-12 mb-2">
                                 <div class="form-group">
                                     <label class="small mb-1" for="name">Nama Kategori</label>
-                                    <input type="text" name="name" id="name" class="form-control"
+                                    <input type="text" name="name" id="name" class="form-control @error('name')
+                                        is-invalid
+                                    @enderror"
                                         placeholder="Nama Kategori" required>
+                                        @error('name')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                 </div>
                             </div>
                             <div class="col-lg-12 mt-2">
