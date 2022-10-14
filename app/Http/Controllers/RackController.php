@@ -25,7 +25,7 @@ class RackController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'number'        =>  'required',
+            'number'        =>  'required|unique:racks',
         ]);
 
         $racks = Rack::create([

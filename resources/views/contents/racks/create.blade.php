@@ -33,7 +33,14 @@
                             <div class="col-lg-12 mb-3">
                                 <div class="form-group">
                                     <label class="small mb-1" for="inputNumber">Nomor Rak</label>
-                                    <input type="number" name="number" id="inputNumber" class="form-control" placeholder="Nomor">
+                                    <input type="number" name="number" id="inputNumber" class="form-control @error('number')
+                                        is-invalid
+                                    @enderror" placeholder="Nomor">
+                                    @error('number')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-lg-12 mb-3">
