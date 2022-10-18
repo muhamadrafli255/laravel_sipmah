@@ -32,6 +32,11 @@ class Book extends Model
         return $this->belongsTo(Publisher::class);
     }
 
+    public function Borrow()
+    {
+        return $this->hasMany(Borrow::class);
+    }
+
     public static function getBooksOnCategories($request)
     {
         $books = Book::select([

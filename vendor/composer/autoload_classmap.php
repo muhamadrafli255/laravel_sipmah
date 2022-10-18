@@ -40,6 +40,7 @@ return array(
     'App\\Mail\\ActivationMail' => $baseDir . '/app/Mail/ActivationMail.php',
     'App\\Models\\Book' => $baseDir . '/app/Models/Book.php',
     'App\\Models\\Borrow' => $baseDir . '/app/Models/Borrow.php',
+    'App\\Models\\BorrowBooks' => $baseDir . '/app/Models/BorrowBooks.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\City' => $baseDir . '/app/Models/City.php',
     'App\\Models\\District' => $baseDir . '/app/Models/District.php',

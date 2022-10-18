@@ -136,12 +136,13 @@ Route::group([
     Route::prefix('borrows')->group(function()
     {
         Route::get('/', [BorrowController::class, 'index']);
-        Route::get('/id', [BorrowController::class, 'detail']);
         Route::get('/create', [BorrowController::class, 'create']);
+        Route::get('/{id}', [BorrowController::class, 'detail']);
         Route::post('/store', [BorrowController::class, 'store']);
         Route::get('/{id}/edit', [BorrowController::class, 'edit']);
         Route::post('/{id}/update', [BorrowController::class, 'update']);
-        Route::get('/{id}/delete', [BorrowController::class, 'delete']);
+        Route::get('/{id}/return', [BorrowController::class, 'return']);
+        Route::post('/{id}/return', [BorrowController::class, 'returned']);
     });
 
     Route::prefix('reports')->group(function()

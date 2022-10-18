@@ -39,7 +39,7 @@ class BookController extends Controller
 
         $total = $request->quantity;
 
-        for($i=1; $i<$total; $i++)
+        for($i=0; $i<$total; $i++)
         {
             Book::create($validatedData);
         }

@@ -43,6 +43,11 @@ class User extends Authenticatable
         return $this->belongsTo(SubDistrict::class);
     }
 
+    public function Borrows()
+    {
+        return $this->hasMany(Borrow::class);
+    }
+
     public static function getMembers($request)
     {
         $members = User::select(

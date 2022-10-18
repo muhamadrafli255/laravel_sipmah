@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RackSeeder::class);
         $this->call(RackCategoriesSeeder::class);
         $this->call(PublisherSeeder::class);
+        $this->call(BorrowSeeder::class);
     }
 }

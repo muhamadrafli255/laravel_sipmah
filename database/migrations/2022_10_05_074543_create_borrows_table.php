@@ -15,14 +15,17 @@ class CreateBorrowsTable extends Migration
     {
         Schema::create('borrows', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->unique();
+            $table->foreignId('book_id');
             $table->foreignId('borrower_id');
             $table->foreignId('borrow_officer_id');
-            $table->foreignId('retun_officer_id');
-            $table->foreignId('book_id');
-            $table->tinyInteger('status_borrow');
-            $table->timestamp('borrowed_date');
-            $table->timestamp('estimation_returned')->nullable();
-            $table->timestamp('returned_date')->nullable();
+            $table->foreignId('returner_id')->nullable();
+            $table->foreignId('return_officer_id')->nullable();
+            $table->tinyInteger('status_borrow')->default(1);
+            $table->date('borrow_date');
+            $table->date('estimated_return');
+            $table->date('return_date')->nullable();
+            $table->tinyInteger('return_condition')->nullable();
             $table->timestamps();
         });
     }

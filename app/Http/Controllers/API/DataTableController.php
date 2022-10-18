@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Yajra\DataTables\DataTables;
 
 class DataTableController extends Controller
@@ -71,6 +72,16 @@ class DataTableController extends Controller
             return $data->Category->name;
         })->addColumn('publisher_name', function($data){
             return $data->publisher->name;
+        })->make(true);
+    }
+
+    public function getBorrows(Request $request)
+    {
+        $data = \App\Models\Borrow::getBorrows($request->query());
+        return DataTables::of($data)->addColumn('borrower_name', function($data){
+            return $data->User->name;
+        })->addColumn('book_title', function($data){
+            return $data->Book->title;
         })->make(true);
     }
 }

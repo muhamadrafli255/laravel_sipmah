@@ -51,62 +51,6 @@
                             </div>
                             <input type="text" id="SearchBox" class="form-control form-control-sm dt-search"
                                 placeholder="Masukan Kata Kunci" aria-label="Username" aria-describedby="basic-addon1">
-                                <div class="btn-group dropright">
-                                    <button type="button" class="btn btn-sm btn-outline-info ml-1 rounded"
-                                        data-toggle="modal" data-target="#modalFilter">
-                                        <i class="fa-solid fa-filter"></i>
-                                    </button>
-                                    <div class="modal fade" id="modalFilter" tabindex="-1" role="dialog">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Penyaringan data</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form action="">
-                                                        <div class="form-group mb-2">
-                                                            <label for="statusFilter">Kategori</label>
-                                                        <select name="" id="statusFilter" class="form-control">
-                                                            <option value="" selected disabled>Berdasarkan Kategori</option>
-                                                            <option value="">Novel</option>
-                                                            <option value="">Komik</option>
-                                                            <option value="">Filosofi</option>
-                                                            <option value="">Matematika</option>
-                                                        </select>
-                                                    </div>
-                                                        <div class="form-group mb-2">
-                                                            <label for="statusFilter">Penerbit</label>
-                                                        <select name="" id="statusFilter" class="form-control">
-                                                            <option value="" selected disabled>Berdasarkan Penerbit</option>
-                                                            <option value="">Gramedia</option>
-                                                            <option value="">Bentang Pustaka</option>
-                                                            <option value="">Erlangga</option>
-                                                            <option value="">Mizan Pustaka</option>
-                                                        </select>
-                                                    </div>
-                                                        <div class="form-group mb-2">
-                                                            <label for="statusFilter">Peminjam</label>
-                                                        <select name="" id="statusFilter" class="form-control">
-                                                            <option value="" selected disabled>Berdasarkan Peminjam</option>
-                                                            <option value="">Paling Banyak</option>
-                                                            <option value="">Paling Sedikit</option>
-                                                        </select>
-                                                    </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-primary">Saring</button>
-                                                    <button type="button" class="btn btn-outline-secondary"
-                                                        data-dismiss="modal">Batal</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                         </div>
                     </div>
                     <div class="float-right">

@@ -560,6 +560,7 @@ class ComposerStaticInitdeda9fec9416132d7535b524d0782f8c
         'App\\Mail\\ActivationMail' => __DIR__ . '/../..' . '/app/Mail/ActivationMail.php',
         'App\\Models\\Book' => __DIR__ . '/../..' . '/app/Models/Book.php',
         'App\\Models\\Borrow' => __DIR__ . '/../..' . '/app/Models/Borrow.php',
+        'App\\Models\\BorrowBooks' => __DIR__ . '/../..' . '/app/Models/BorrowBooks.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\City' => __DIR__ . '/../..' . '/app/Models/City.php',
         'App\\Models\\District' => __DIR__ . '/../..' . '/app/Models/District.php',

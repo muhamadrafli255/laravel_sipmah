@@ -1,16 +1,29 @@
 @extends('app.main')
+
+@section('style')
+<link rel="stylesheet" href="/css/chosen.min.css">
+@endsection
+@section('script')
+@include('components.scripts.choosen')
+@include('components.scripts.momentjs')
+@include('components.scripts.datepicker')
+@endsection
+
 @section('content')
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 ml-4 text-gray-800">{{ $title }}</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/books">Peminjaman</a></li>
+            <li class="breadcrumb-item"><a href="/borrows">Peminjaman</a></li>
+            @foreach ($borrows as $borrow)
             <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
         </ol>
     </div>
     <div class="container-xl px-4 mt-4 mb-4">
         <!-- Account page navigation-->
+        <form action="/borrows/{{ $borrow->id }}/update" method="POST">
+            @csrf
         <div class="row">
             <div class="col-xl-4">
                 <!-- Profile picture card-->
@@ -21,16 +34,16 @@
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
                         <img class="img-fluid rounded mb-4"
-                            src="https://laksmipamuntjak.com/public/uploads/2017/01/Liberaturpreis%202016%20Photo%20FINAL%20FINAL%20COVER%20OP%201.jpg"
-                            alt="" width="170px" height="170px">
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUfytN3doVZit6vSK5E3BngqpmSwoSADfK5Q&usqp=CAU"
+                            alt="" width="75px" height="75px">
                         <!-- Profile picture upload button-->
                         <div class="form-group">
                             <label for="ubahBuku">Ubah Buku</label>
-                            <select name="" id="ubahBuku" class="form-control">
-                                <option value="" selected disabled>Amba</option>
-                                <option value="">Negeri Diujung Tanduk</option>
-                                <option value="">Orang - Orang Biasa</option>
-                                <option value="">Matematika Kelas 11</option>
+                            <select name="book_id" id="selectBooks" class="form-control">
+                                <option value="{{ $borrow->book_id }}">{{ $borrow->Book->code }} | {{ $borrow->Book->title }}</option>
+                                @foreach ($books as $book)
+                                <option value="{{ $book->id }}">{{ $book->code }} | {{ $book->title }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -43,28 +56,22 @@
                         <p class="h5 text-gray-800">Data Peminjaman</p>
                     </div>
                     <div class="card-body">
-                        <form action="/borrows/id/update">
                             <!-- Form Group (username)-->
                             <div class="mb-3">
-                                <label class="small mb-1" for="selectPeminjam">Nama Peminjam</label>
-                                <select name="" id="selectPeminjam" class="form-control">
-                                    <option value="" selected disabled>Robi Firmansyah | 20221063</option>
-                                    <option value="">Rudiansyah Fakhrul | 20221056</option>
-                                    <option value="">Jujun Saputra | 20221057</option>
-                                    <option value="">Dani Fitriani | 20221058</option>
-                                    <option value="">Andara Amanda | 20221059</option>
-                                    <option value="">Queensha Marsya | 20221060</option>
-                                    <option value="">Raina Aqila | 20221061</option>
-                                    <option value="">Sadiya Marshanda | 20221062</option>
-                                    <option value="">Dodi Permana | 20221064</option>
+                                <label class="small mb-1" for="selectBorrower">Nama Peminjam</label>
+                                <select name="borrower_id" id="selectBorrower" class="form-control">
+                                    <option value="{{ $borrow->borrower_id }}">{{ $borrow->user->name }} | {{ $borrow->user->identifier_number }}</option>
+                                    @foreach ($users as $user)ß
+                                    <option value="{{ $user->id }}">{{ $user->name }} | {{ $user->identifier_number }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
                                 <!-- Form Group (first name)-->
                                 <div class="col-lg-12">
-                                    <label class="small mb-1" for="inputTanggal">Tanggal Dikembalikan</label>
-                                    <input type="date" class="form-control" required>
+                                    <label class="small mb-1" for="estimatedReturned">Estimasi Dikembalikan</label>
+                                    <input type="text" class="form-control" name="estimated_return" id="estimatedReturned" value="{{ $borrow->estimated_return }}" placeholder="Masukkan Tanggal Estimasi Dikembalikan" required>
                                 </div>
                             </div>
                                 <!-- Form Group (last name)-->
@@ -74,6 +81,7 @@
                                     <a href="/borrows" class="btn btn-sm btn-outline-secondary" type="button">Kembali</a>
                                     <button type="submit" class="btn btn-sm btn-outline-primary">Ubah</button>
                                 </div>
+                                @endforeach
                             </div>
                         </form>
                     </div>

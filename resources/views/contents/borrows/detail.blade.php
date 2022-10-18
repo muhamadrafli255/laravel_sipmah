@@ -6,82 +6,108 @@
         <h1 class="h3 mb-0 text-gray-800">{{ $title }}</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/books">Peminjaman</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+            @foreach ($borrows as $borrow)
+            <li class="breadcrumb-item active" aria-current="page">{{ $borrow->code }}</li>
         </ol>
     </div>
         <!-- Account page navigation-->
         <div class="row">
             <div class="col-xl-4">
                 <!-- Profile picture card-->
-                <div class="card mb-4 mb-xl-0">
+                <div class="card mb-4">
                     <div class="card-header"><p class="h5 text-gray-800">Gambar Buku</p></div>
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
-                        <img class="img-fluid rounded mb-2" src="https://ebooks.gramedia.com/ebook-covers/42421/image_highres/ID_NUT2018MTH05NUT.jpg" alt="" width="170px" height="170px"></p>
+                        <img class="img-fluid rounded mb-1" src="/img/book-images/{{ $borrow->Book->image }}" alt="" width="223px" height="223px"></p>
                     </div>
                 </div>
             </div>
             <div class="col-xl-8">
                 <!-- Account details card-->
-                <div class="card mb-4 mb-xl-0">
+                <div class="card mb-4">
                     <div class="card-header"><p class="h5 text-gray-800">Detail Peminjaman</p></div>
                     <div class="card-body">
                         <div class="row">
                             {{-- NIS / NUPTK Detail --}}
-                            <div class="col-lg-3">
+                            <div class="col-lg-5">
                                 <h6 class="text-gray-800">Kode Peminjaman</h6>
                             </div>
-                            <div class="col-lg-9">
-                                <h6 class="text-muted">: PMJ - OOO1</h6>
+                            <div class="col-lg-7">
+                                <h6 class="text-muted">: {{ $borrow->code }}</h6>
                             </div>
                             {{-- END NIS / NUPTK Detail --}}
                             {{-- Full Name Detail --}}
-                            <div class="col-lg-3">
+                            <div class="col-lg-5">
                                 <h6 class="text-gray-800">Judul Buku</h6>
                             </div>
-                            <div class="col-lg-9">
-                                <h6 class="text-muted">: Negeri Diujung Tanduk</h6>
+                            <div class="col-lg-7">
+                                <h6 class="text-muted">: {{ $borrow->Book->title }}</h6>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-5">
                                 <h6 class="text-gray-800">Nama Peminjam</h6>
                             </div>
-                            <div class="col-lg-9">
-                                <h6 class="text-muted">: Dani Fitriani</h6>
+                            <div class="col-lg-7">
+                                <h6 class="text-muted">: {{ $borrow->user->name }}</h6>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-5">
                                 <h6 class="text-gray-800">Petugas Peminjam</h6>
                             </div>
-                            <div class="col-lg-9">
-                                <h6 class="text-muted">: Rudiansyah Fakhrul</h6>
+                            <div class="col-lg-7">
+                                @foreach ($borrowofficers as $borrowofficer)
+                                <h6 class="text-muted">: {{ $borrowofficer->name }}</h6>
+                                @endforeach
                             </div>
                             {{-- End Full Name Detail --}}
                             {{-- Email Detail --}}
-                            <div class="col-lg-3">
+                            <div class="col-lg-5">
                                 <h6 class="text-gray-800">Tanggal Pinjam</h6>
                             </div>
-                            <div class="col-lg-9">
-                                <h6 class="text-muted">: 12/09/2022</h6>
+                            <div class="col-lg-7">
+                                <h6 class="text-muted">: {{ $borrow->borrow_date }}</h6>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-5">
+                                <h6 class="text-gray-800">Estimasi Dikembalikan</h6>
+                            </div>
+                            <div class="col-lg-7">
+                                <h6 class="text-muted">: {{ $borrow->estimated_return }}</h6>
+                            </div>
+                            <div class="col-lg-5">
+                                <h6 class="text-gray-800">Nama Pengembali</h6>
+                            </div>
+                            <div class="col-lg-7">
+                                @foreach ($returners as $returner)
+                                <h6 class="text-muted">: {{ $returner->name }}</h6>
+                                @endforeach
+                            </div>
+                            <div class="col-lg-5">
                                 <h6 class="text-gray-800">Petugas Pengembalian</h6>
                             </div>
-                            <div class="col-lg-9">
-                                <h6 class="text-muted">: Rudiansyah Fakhrul</h6>
+                            <div class="col-lg-7">
+                                @foreach ($returnofficers as $returnofficer)
+                                <h6 class="text-muted">: {{ $returnofficer->name }}</h6>
+                                @endforeach
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-5">
                                 <h6 class="text-gray-800">Tanggal Kembali</h6>
                             </div>
-                            <div class="col-lg-9">
-                                <h6 class="text-muted">: 15/09/2022</h6>
+                            <div class="col-lg-7">
+                                <h6 class="text-muted">: {{ $borrow->return_date }}</h6>
                             </div>
                             {{-- End No Telepon Detail --}}
                             {{-- No Telepon Detail --}}
-                            <div class="col-lg-3">
+                            <div class="col-lg-5">
                                 <h6 class="text-gray-800">Status Peminjaman</h6>
                             </div>
-                            <div class="col-lg-9 mb-3">
-                                <h6 class="text-muted">: <span class="badge badge-success">Sudah Dikembalikan</span></h6>
+                            <div class="col-lg-7 mb-3">
+                                <h6 class="text-muted">: 
+                                    @if ($borrow->status_borrow == 1)
+                                    <span class="badge badge-warning">Sedang Dipinjam</span>
+                                    @else
+                                    <span class="badge badge-success">Sudah Dikembalikan</span>
+                                    @endif
+                                </h6>
                             </div>
+                            @endforeach
                             {{-- End No Telepon Detail --}}
                             <div class="col-lg-12 mt-2 mb-1">
                                 <div class="float-right">
@@ -137,7 +163,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal">Batal</button>
                 <a href="/borrows/id/return" class="btn btn-sm btn-outline-success">Kembalikan</a>
-            </div>
+            </div>               
         </div>
     </div>
 </div>
