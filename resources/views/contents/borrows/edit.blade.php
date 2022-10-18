@@ -17,6 +17,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/borrows">Peminjaman</a></li>
             @foreach ($borrows as $borrow)
+            <li class="breadcrumb-item active" aria-current="page">{{ $borrow->code }}</li>
             <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
         </ol>
     </div>

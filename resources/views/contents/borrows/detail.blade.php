@@ -5,7 +5,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{ $title }}</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/books">Peminjaman</a></li>
+            <li class="breadcrumb-item"><a href="/borrows">Peminjaman</a></li>
             @foreach ($borrows as $borrow)
             <li class="breadcrumb-item active" aria-current="page">{{ $borrow->code }}</li>
         </ol>
@@ -63,13 +63,13 @@
                                 <h6 class="text-gray-800">Tanggal Pinjam</h6>
                             </div>
                             <div class="col-lg-7">
-                                <h6 class="text-muted">: {{ $borrow->borrow_date }}</h6>
+                                <h6 class="text-muted">: {{ date('d F Y', strtotime($borrow->borrow_date)) }}</h6>
                             </div>
                             <div class="col-lg-5">
                                 <h6 class="text-gray-800">Estimasi Dikembalikan</h6>
                             </div>
                             <div class="col-lg-7">
-                                <h6 class="text-muted">: {{ $borrow->estimated_return }}</h6>
+                                <h6 class="text-muted">: {{ date('d F Y', strtotime($borrow->estimated_return)) }}</h6>
                             </div>
                             <div class="col-lg-5">
                                 <h6 class="text-gray-800">Nama Pengembali</h6>
@@ -91,7 +91,7 @@
                                 <h6 class="text-gray-800">Tanggal Kembali</h6>
                             </div>
                             <div class="col-lg-7">
-                                <h6 class="text-muted">: {{ $borrow->return_date }}</h6>
+                                <h6 class="text-muted">: {{ date('d F Y', strtotime($borrow->return_date)) }}</h6>
                             </div>
                             {{-- End No Telepon Detail --}}
                             {{-- No Telepon Detail --}}
@@ -111,7 +111,12 @@
                             {{-- End No Telepon Detail --}}
                             <div class="col-lg-12 mt-2 mb-1">
                                 <div class="float-right">
+                                    @if ($borrow->status_borrow == 1)
                                     <a href="/borrows" class="btn btn-sm btn-outline-secondary">Kembali</a>
+                                    <a href="/borrows{{ $borrow->id }}/return" class="btn btn-sm btn-outline-success">Pengembalian</a>
+                                    @else
+                                    <a href="/borrows" class="btn btn-sm btn-outline-secondary">Kembali</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
