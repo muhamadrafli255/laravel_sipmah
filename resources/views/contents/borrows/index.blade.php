@@ -74,6 +74,7 @@
                                 <th>No</th>
                                 <th>Judul Buku</th>
                                 <th>Nama Peminjam</th>
+                                <th>Petugas Peminjaman</th>
                                 <th>Tanggal Pinjam</th>
                                 <th>Status</th>
                                 <th class="px-5">Aksi</th>

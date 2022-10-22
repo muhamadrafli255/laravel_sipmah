@@ -1,29 +1,25 @@
-<script src="{{ asset('/plugins/select2/js/select2.full.min.js') }}"></script>
-<script>
-    $.fn.select2.defaults.set('theme', 'bootstrap4')
-    function renderSelect2(element, url, placeholder, results, allowClear = false, dropdownParent = 'body') {
-        if (typeof placeholder == 'undefined' || placeholder == null || placeholder.length == 0) placeholder = 'Choose'
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/css/select2-bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-        $(element).select2({
-            allowClear: allowClear,
-            placeholder: placeholder,
-            dropdownParent: $(dropdownParent),
-            width: '100%',
-            ajax: {
-                url: url,
-                headers: {
-                    'Authorization' : 'Bearer '+ localStorage.getItem('api-token'),
-                    'Content-Type' : 'application/json',
-                },
-                dataType: 'json',
-                type: 'GET',
-                data: function (params) {
-                    const query = { keyword: params.term }
-                    return query;
-                },
-                processResults: results
-            },
-            escapeMarkup: function (markup) { return markup; },
-        })
-    }
+<script>
+$(document).ready(function(){
+    $('#selectBooks').select2({
+        theme: 'bootstrap',
+    });
+    $('#selectBorrower').select2({
+        theme: 'bootstrap',
+    });
+
+    $('#addMore').on('click', function(){
+        $('#0').select2({
+            theme: 'bootstrap',
+        }).click();
+    });
+    $('#remove').on('click', function(){
+        $('#0').select2({
+            theme: 'bootstrap',
+        }).click();
+    });
+});
 </script>

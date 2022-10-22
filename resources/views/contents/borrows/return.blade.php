@@ -17,7 +17,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/borrows">Peminjaman</a></li>
             @foreach ($borrows as $borrow)
-            <li class="breadcrumb-item active" aria-current="page">{{ $borrow->code }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $borrow->Borrow->code }}</li>
             <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
         </ol>
     </div>
@@ -44,7 +44,7 @@
                                 <h6 class="text-gray-800">Kode Peminjaman</h6>
                             </div>
                             <div class="col-lg-9">
-                                <h6 class="text-muted">: {{ $borrow->code }}</h6>
+                                <h6 class="text-muted">: {{ $borrow->Borrow->code }}</h6>
                             </div>
                             {{-- END NIS / NUPTK Detail --}}
                             {{-- Full Name Detail --}}
@@ -58,15 +58,13 @@
                                 <h6 class="text-gray-800">Nama Peminjam</h6>
                             </div>
                             <div class="col-lg-9">
-                                <h6 class="text-muted">: {{ $borrow->user->name }}</h6>
+                                <h6 class="text-muted">: {{ $borrow->Borrow->Borrower->name }}</h6>
                             </div>
                             <div class="col-lg-3">
                                 <h6 class="text-gray-800">Petugas Peminjam</h6>
                             </div>
                             <div class="col-lg-9">
-                                @foreach ($borrowofficers as $borrowofficer)
-                                <h6 class="text-muted">: {{ $borrowofficer->name }}</h6>
-                                @endforeach
+                                <h6 class="text-muted">: {{ $borrow->Borrow->BorrowOfficer->name }}</h6>
                             </div>
                             {{-- End Full Name Detail --}}
                             {{-- Email Detail --}}
@@ -74,7 +72,7 @@
                                 <h6 class="text-gray-800">Tanggal Pinjam</h6>
                             </div>
                             <div class="col-lg-9">
-                                <h6 class="text-muted">: {{ date('d F Y', strtotime($borrow->borrow_date)) }}</h6>
+                                <h6 class="text-muted">: {{ date('d F Y', strtotime($borrow->Borrow->borrow_date)) }}</h6>
                             </div>
                             {{-- End No Telepon Detail --}}
                             {{-- No Telepon Detail --}}

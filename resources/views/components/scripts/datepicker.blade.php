@@ -5,7 +5,7 @@ rel = "stylesheet">
 
 
 <script>
-    $(function () {
+    $(document).ready(function () {
         $('#dateBorrow').datepicker({
             dateFormat: "yy-mm-dd",
             changeMonth: false,
@@ -18,11 +18,20 @@ rel = "stylesheet">
             changeYear: false,
             minDate: new Date(),
         });
+        $('#addMore').on('click', function(){
+            $('#1').datepicker({
+                dateFormat: "yy-mm-dd",
+                changeMonth: false,
+                changeYear: false,
+                minDate: new Date(),
+            }).click();
+        });
         $('#dateReturn').datepicker({
             dateFormat: "yy-mm-dd",
             changeMonth: false,
             changeYear: false,
             maxDate: new Date(),
+            
         });
     }); 
 </script>

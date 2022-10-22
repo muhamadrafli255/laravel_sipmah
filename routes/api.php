@@ -118,3 +118,13 @@ Route::group([
         Route::get('/borrows', [DataTableController::class, 'getBorrows']);
     });
 });
+
+Route::group([
+    'namespace' => 'API',
+], function(){
+    Route::group([
+        'prefix' => 'datatables',
+    ], function(){
+        Route::get('/report/borrows', [DataTableController::class, 'getReportBorrows']);
+    });
+});

@@ -21,6 +21,9 @@ function initDatatable() {
                 data: 'borrower_name', name: 'borrower_name', orderable: true, searchable: true
             },
             {
+                data: 'officer_name', name: 'officer_name', orderable: true, searchable: true
+            },
+            {
                 data: 'borrow_date', name: 'borrow_date', orderable: true, searchable: true
             },
             {

@@ -22,25 +22,34 @@ class Borrow extends Model
             ];
     }
 
-    public function User()
+    public function BorrowBooks()
+    {
+        return $this->hasMany(BorrowBooks::class);
+    }
+
+    public function Borrower()
     {
         return $this->belongsTo(User::class, 'borrower_id');
     }
 
-    public function Book()
+    public function BorrowOfficer()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(User::class, 'borrow_officer_id');
     }
 
-    public static function getBorrows()
+    public static function getReportBorrows($request)
     {
         $borrows = Borrow::select([
             'id',
             'book_id',
             'borrower_id',
-            'borrow_date',
-            'status_borrow',
-        ]);
+            'estimated_return',
+            'created_at',
+        ])->where('status_borrow', 1);
+
+        if(isset($request['startDate'])){
+            $borrows->whereBetween('created_at', [$request['startDate'], $request['endDate']]);
+        }
 
         return $borrows;
     }

@@ -7,7 +7,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/borrows">Peminjaman</a></li>
             @foreach ($borrows as $borrow)
-            <li class="breadcrumb-item active" aria-current="page">{{ $borrow->code }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $borrow->Borrow->code }}</li>
         </ol>
     </div>
         <!-- Account page navigation-->
@@ -18,7 +18,11 @@
                     <div class="card-header"><p class="h5 text-gray-800">Gambar Buku</p></div>
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
-                        <img class="img-fluid rounded mb-1" src="/img/book-images/{{ $borrow->Book->image }}" alt="" width="223px" height="223px"></p>
+                        @if ($borrow->Borrow->status_borrow == 1)
+                        <img class="img-fluid rounded mb-1" src="/img/book-images/{{ $borrow->Book->image }}" alt="" width="164px" height="164px"></p>
+                        @else
+                        <img class="img-fluid rounded mb-1" src="/img/book-images/{{ $borrow->Book->image }}" alt="" width="200px" height="200px"></p>    
+                        @endif
                     </div>
                 </div>
             </div>
@@ -33,7 +37,7 @@
                                 <h6 class="text-gray-800">Kode Peminjaman</h6>
                             </div>
                             <div class="col-lg-7">
-                                <h6 class="text-muted">: {{ $borrow->code }}</h6>
+                                <h6 class="text-muted">: {{ $borrow->Borrow->code }}</h6>
                             </div>
                             {{-- END NIS / NUPTK Detail --}}
                             {{-- Full Name Detail --}}
@@ -47,15 +51,13 @@
                                 <h6 class="text-gray-800">Nama Peminjam</h6>
                             </div>
                             <div class="col-lg-7">
-                                <h6 class="text-muted">: {{ $borrow->user->name }}</h6>
+                                <h6 class="text-muted">: {{ $borrow->Borrow->Borrower->name }}</h6>
                             </div>
                             <div class="col-lg-5">
                                 <h6 class="text-gray-800">Petugas Peminjam</h6>
                             </div>
                             <div class="col-lg-7">
-                                @foreach ($borrowofficers as $borrowofficer)
-                                <h6 class="text-muted">: {{ $borrowofficer->name }}</h6>
-                                @endforeach
+                                <h6 class="text-muted">: {{ $borrow->Borrow->BorrowOfficer->name }}</h6>
                             </div>
                             {{-- End Full Name Detail --}}
                             {{-- Email Detail --}}
@@ -63,7 +65,7 @@
                                 <h6 class="text-gray-800">Tanggal Pinjam</h6>
                             </div>
                             <div class="col-lg-7">
-                                <h6 class="text-muted">: {{ date('d F Y', strtotime($borrow->borrow_date)) }}</h6>
+                                <h6 class="text-muted">: {{ date('d F Y', strtotime($borrow->Borrow->borrow_date)) }}</h6>
                             </div>
                             <div class="col-lg-5">
                                 <h6 class="text-gray-800">Estimasi Dikembalikan</h6>
@@ -71,28 +73,38 @@
                             <div class="col-lg-7">
                                 <h6 class="text-muted">: {{ date('d F Y', strtotime($borrow->estimated_return)) }}</h6>
                             </div>
+                            @if ($borrow->status_borrow == 1)
+                                
+                            @else
                             <div class="col-lg-5">
                                 <h6 class="text-gray-800">Nama Pengembali</h6>
                             </div>
                             <div class="col-lg-7">
-                                @foreach ($returners as $returner)
-                                <h6 class="text-muted">: {{ $returner->name }}</h6>
-                                @endforeach
+                                <h6 class="text-muted">: {{ $borrow->Returner->name }}</h6>
                             </div>
+                            @endif
+
+                            @if ($borrow->status_borrow == 1)
+
+                            @else
                             <div class="col-lg-5">
                                 <h6 class="text-gray-800">Petugas Pengembalian</h6>
                             </div>
                             <div class="col-lg-7">
-                                @foreach ($returnofficers as $returnofficer)
-                                <h6 class="text-muted">: {{ $returnofficer->name }}</h6>
-                                @endforeach
+                                <h6 class="text-muted">: {{ $borrow->ReturnOfficer->name }}</h6>
                             </div>
+                            @endif
+
+                            @if ($borrow->status_borrow == 1)
+                                
+                            @else
                             <div class="col-lg-5">
                                 <h6 class="text-gray-800">Tanggal Kembali</h6>
                             </div>
                             <div class="col-lg-7">
                                 <h6 class="text-muted">: {{ date('d F Y', strtotime($borrow->return_date)) }}</h6>
                             </div>
+                            @endif
                             {{-- End No Telepon Detail --}}
                             {{-- No Telepon Detail --}}
                             <div class="col-lg-5">
@@ -100,7 +112,7 @@
                             </div>
                             <div class="col-lg-7 mb-3">
                                 <h6 class="text-muted">: 
-                                    @if ($borrow->status_borrow == 1)
+                                    @if ($borrow->Borrow->status_borrow == 1)
                                     <span class="badge badge-warning">Sedang Dipinjam</span>
                                     @else
                                     <span class="badge badge-success">Sudah Dikembalikan</span>
@@ -113,7 +125,8 @@
                                 <div class="float-right">
                                     @if ($borrow->status_borrow == 1)
                                     <a href="/borrows" class="btn btn-sm btn-outline-secondary">Kembali</a>
-                                    <a href="/borrows{{ $borrow->id }}/return" class="btn btn-sm btn-outline-success">Pengembalian</a>
+                                    <a href="/borrows/{{ $borrow->id }}/edit" class="btn btn-sm btn-outline-warning">Ubah</a>
+                                    <a href="/borrows/{{ $borrow->id }}/return" class="btn btn-sm btn-outline-success">Pengembalian</a>
                                     @else
                                     <a href="/borrows" class="btn btn-sm btn-outline-secondary">Kembali</a>
                                     @endif

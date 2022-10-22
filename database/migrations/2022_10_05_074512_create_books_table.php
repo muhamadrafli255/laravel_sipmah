@@ -23,6 +23,7 @@ class CreateBooksTable extends Migration
             $table->foreignId('publisher_id');
             $table->tinyInteger('condition_book');
             $table->year('publication_year');
+            $table->boolean('is_borrow')->default(false);
             $table->string('image');
             $table->softDeletes();
             $table->timestamps();

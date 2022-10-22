@@ -17,7 +17,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/borrows">Peminjaman</a></li>
             @foreach ($borrows as $borrow)
-            <li class="breadcrumb-item active" aria-current="page">{{ $borrow->code }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $borrow->Borrow->code }}</li>
             <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
         </ol>
     </div>
@@ -61,7 +61,7 @@
                             <div class="mb-3">
                                 <label class="small mb-1" for="selectBorrower">Nama Peminjam</label>
                                 <select name="borrower_id" id="selectBorrower" class="form-control">
-                                    <option value="{{ $borrow->borrower_id }}">{{ $borrow->user->name }} | {{ $borrow->user->identifier_number }}</option>
+                                    <option value="{{ $borrow->Borrow->borrower_id }}">{{ $borrow->Borrow->Borrower->name }} | {{ $borrow->Borrow->Borrower->identifier_number }}</option>
                                     @foreach ($users as $user)ß
                                     <option value="{{ $user->id }}">{{ $user->name }} | {{ $user->identifier_number }}</option>
                                     @endforeach

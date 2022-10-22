@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Yajra\DataTables\Contracts\DataTable;
 use Yajra\DataTables\DataTables;
 
 class DataTableController extends Controller
@@ -77,7 +78,21 @@ class DataTableController extends Controller
 
     public function getBorrows(Request $request)
     {
-        $data = \App\Models\Borrow::getBorrows($request->query());
+        $data = \App\Models\BorrowBooks::getBorrows($request->query());
+        return DataTables::of($data)->addColumn('borrower_name', function($data){
+            return $data->Borrow->Borrower->name;
+        })->addColumn('officer_name', function($data){
+            return $data->Borrow->BorrowOfficer->name;
+        })->addColumn('book_title', function($data){
+            return $data->Book->title;
+        })->addColumn('borrow_date', function($data){
+            return $data->Borrow->borrow_date;
+        })->make(true);
+    }
+
+    public function getReportBorrows(Request $request)
+    {
+        $data = \App\Models\Borrow::getReportBorrows($request->query());
         return DataTables::of($data)->addColumn('borrower_name', function($data){
             return $data->User->name;
         })->addColumn('book_title', function($data){

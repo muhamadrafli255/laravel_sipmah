@@ -13,6 +13,7 @@ use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PublisherController;
+use App\Models\BorrowBooks;
 
 /*
 |--------------------------------------------------------------------------

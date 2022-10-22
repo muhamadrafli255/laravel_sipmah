@@ -32,9 +32,9 @@ class Book extends Model
         return $this->belongsTo(Publisher::class);
     }
 
-    public function Borrow()
+    public function BorrowBooks()
     {
-        return $this->hasMany(Borrow::class);
+        return $this->hasMany(BorrowBooks::class);
     }
 
     public static function getBooksOnCategories($request)
