@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
@@ -88,6 +89,14 @@ Route::group([
 ], function(){
 
     Route::get('/logout', [AuthController::class, 'logout']);
+
+    Route::prefix('accounts')->group(function()
+    {
+        Route::get('/', [AccountController::class, 'index']);    
+        Route::post('/', [AccountController::class, 'update']);    
+        Route::get('/password', [AccountController::class, 'password']);    
+        Route::post('/{id}/password', [AccountController::class, 'updatePassword']);    
+    });
 
 });
 
