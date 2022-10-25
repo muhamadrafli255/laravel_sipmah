@@ -74,6 +74,12 @@
                             <div class="col-lg-9">
                                 <h6 class="text-muted">: {{ date('d F Y', strtotime($borrow->Borrow->borrow_date)) }}</h6>
                             </div>
+                            <div class="col-lg-3">
+                                <h6 class="text-gray-800">Estimasi Dikembalikan</h6>
+                            </div>
+                            <div class="col-lg-9">
+                                <h6 class="text-muted">: {{ date('d F Y', strtotime($borrow->estimated_return)) }}</h6>
+                            </div>
                             {{-- End No Telepon Detail --}}
                             {{-- No Telepon Detail --}}
                             <div class="col-lg-3">

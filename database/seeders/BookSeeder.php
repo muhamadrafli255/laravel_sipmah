@@ -25,6 +25,7 @@ class BookSeeder extends Seeder
                                     langkah kaki akan dibawa.',
             'writer'            =>  'Tere Liye',
             'publisher_id'      =>  1,
+            'is_borrow'         =>  true,
             'condition_book'    =>  1,
             'publication_year'  =>  2018, 
             'image'             =>  'pergi.jpeg',
@@ -58,7 +59,7 @@ class BookSeeder extends Seeder
             'synopsis'          =>  'Tahun 2006: Amba pergi ke Pulau Buru. Ia mencari orang yang dikasihinya, yang memberinya seorang anak di luar nikah. Laki-laki itu Bhisma, dokter lulusan Leipzig, Jerman Timur, yang hilang karena ditangkap pemerintah Orde Baru dan dibuang ke Pulau Buru. Ketika kamp tahanan politik itu dibubarkan dan para tapol dipulangkan, Bhisma tetap tak kembali.',
             'writer'            =>  'Laksmi Pamuntjak',
             'publisher_id'      =>  4,
-            'condition_book'    =>  1,
+            'condition_book'    =>  2,
             'publication_year'  =>  2017, 
             'image'             =>  'amba.jpeg',
         ]);
@@ -69,7 +70,7 @@ class BookSeeder extends Seeder
             'synopsis'          =>  'Dilan: Dia adalah Dilanku tahun 1990 adalah sebuah novel karya Pidi Baiq yang diterbitkan oleh Penerbit Pastel Books. Novel tersebut menjadi buku dengan penjualan terbaik di Gramedia, serta diadaptasi ke dalam sebuah film yang berjudul Dilan 1990.',
             'writer'            =>  'Pidi Baiq',
             'publisher_id'      =>  5,
-            'condition_book'    =>  1,
+            'condition_book'    =>  3,
             'publication_year'  =>  2014, 
             'image'             =>  'dilan1990.jpeg',
         ]);
@@ -80,6 +81,7 @@ class BookSeeder extends Seeder
             'synopsis'          =>  'Buku ini merupakan buku pelajaran matematika untuk kelas X SMK/SMA.',
             'writer'            =>  'Bornok Sinaga, Pardomuan N.J.M Sinambela, Andri Kristianto Sitanggang, Tri Andri Hutapea, Sudianto Manulang, Lasker Pengarapan Sinaga, Mangara Simanjorang',
             'publisher_id'      =>  6,
+            'is_borrow'         =>  true,
             'condition_book'    =>  1,
             'publication_year'  =>  2017, 
             'image'             =>  'mtkkelas10.png',

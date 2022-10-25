@@ -12,7 +12,7 @@
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/css/ruang-admin.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/mystyle.css">
-    <link href="img/logo/logo.png" rel="icon">
+    <link href="/img/logo/logo.png" rel="icon">
     @yield('style')
     <title>SIPMah - {{ $title }}</title>
 </head>

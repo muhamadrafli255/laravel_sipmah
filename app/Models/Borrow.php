@@ -37,20 +37,4 @@ class Borrow extends Model
         return $this->belongsTo(User::class, 'borrow_officer_id');
     }
 
-    public static function getReportBorrows($request)
-    {
-        $borrows = Borrow::select([
-            'id',
-            'book_id',
-            'borrower_id',
-            'estimated_return',
-            'created_at',
-        ])->where('status_borrow', 1);
-
-        if(isset($request['startDate'])){
-            $borrows->whereBetween('created_at', [$request['startDate'], $request['endDate']]);
-        }
-
-        return $borrows;
-    }
 }

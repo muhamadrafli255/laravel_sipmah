@@ -42,4 +42,53 @@ class BorrowBooks extends Model
 
         return $borrows;
     }
+
+    public static function getReportBorrows($request)
+    {
+        $borrows = BorrowBooks::select([
+            'id',
+            'book_id',
+            'borrow_id',
+            'estimated_return',
+            'created_at',
+        ])->where('status_borrow', 1);
+
+        if(isset($request['startDate'])){
+            $borrows->whereBetween('created_at', [$request['startDate'], $request['endDate']]);
+        }
+
+        return $borrows;
+    }
+
+    public static function getReportDamaged($request)
+    {
+        $borrows = BorrowBooks::select([
+            'id',
+            'book_id',
+            'borrow_id',
+            'return_date',
+        ])->where('return_condition', 2);
+
+        if(isset($request['startDate'])){
+            $borrows->whereBetween('created_at', [$request['startDate'], $request['endDate']]);
+        }
+
+        return $borrows;
+    }
+
+    public static function getReportLost($request)
+    {
+        $borrows = BorrowBooks::select([
+            'id',
+            'book_id',
+            'borrow_id',
+            'return_date',
+        ])->where('return_condition', 3);
+
+        if(isset($request['startDate'])){
+            $borrows->whereBetween('created_at', [$request['startDate'], $request['endDate']]);
+        }
+
+        return $borrows;
+    }
 }

@@ -128,3 +128,23 @@ Route::group([
         Route::get('/report/borrows', [DataTableController::class, 'getReportBorrows']);
     });
 });
+
+Route::group([
+    'namespace' => 'API',
+], function(){
+    Route::group([
+        'prefix' => 'datatables',
+    ], function(){
+        Route::get('/report/damaged', [DataTableController::class, 'getReportDamaged']);
+    });
+});
+
+Route::group([
+    'namespace' => 'API',
+], function(){
+    Route::group([
+        'prefix' => 'datatables',
+    ], function(){
+        Route::get('/report/lost', [DataTableController::class, 'getReportLost']);
+    });
+});

@@ -26,7 +26,7 @@
             @csrf
             <div class="row">
                 <div class="col-xl-12">
-                    <!-- Account details card-->
+                    <!-- Account details card-->    
                     <div class="card mb-4">
                         <div class="card-header">
                             <p class="h5 text-gray-800">Data Peminjaman</p>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="control-group" id="after">
                                 <div class="row gx-3 ml-1">
-                                    <div class="col-lg-8 mb-4">
+                                    <div class="col-lg-10 mb-4">
                                         <label for="selectBooks">Buku yang dipinjam</label>
                                         <select name="book_id[]" id="selectBooks" class="form-control @error('book_id')
                                     is-invalid
@@ -89,7 +89,7 @@
                                     </div>
                                     <!-- Form Row-->
                                     <!-- Form Group (first name)-->
-                                    <div class="col-lg-8 mb-4">
+                                    <div class="col-lg-10 mb-4">
                                         <div class="form-group" id="simple-date1">
                                             <label for="estimatedReturned">Estimasi Dikembalikan</label>
                                             <div class="input-group date">
@@ -109,7 +109,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-3 ml-3">
+                                    <div class="col-2">
                                         <button type="button" id="addMore" class="btn btn-success">
                                             <i class="fas fa-plus"></i>
                                         </button>
@@ -119,7 +119,7 @@
                             <div id="copy" class="invisible">
                                 <div class="control-group">
                                     <div class="row gx-3 ml-1">
-                                        <div class="col-lg-8 mb-4">
+                                        <div class="col-lg-10 mb-4">
                                             <label for="selectBooks">Buku yang dipinjam</label>
                                             @php
                                             $count = 1; 
@@ -127,7 +127,7 @@
                                             @for ($i = 0; $i < $count; $i++)
                                             <select name="book_id[]" id="{{ $i }}" class="form-control @error('book_id')
                                     is-invalid
-                                @enderror">
+                                @enderror" onclick="renderSelect()">
                                 @endfor
                                                 <option value="">Kode Buku | Judul Buku</option>
                                                 @foreach ($books as $book)
@@ -143,7 +143,7 @@
                                         </div>
                                         <!-- Form Row-->
                                         <!-- Form Group (first name)-->
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-10">
                                             <div class="form-group" id="simple-date1">
                                                 <label for="estimatedReturned">Estimasi Dikembalikan</label>
                                                 <div class="input-group date">
@@ -153,8 +153,8 @@
                                                     </div>
                                                     <input type="text" name="estimated_returned[]" class="form-control @error('estimated_returned')
                                             is-invalid
-                                        @enderror" id="1"
-                                                        placeholder="Masukkan Tanggal Estimasi Dikembalikan">
+                                        @enderror" id="dt"
+                                                        placeholder="Masukkan Tanggal Estimasi Dikembalikan" onclick="renderDatepicker()">
                                                     @error('estimated_returned')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
@@ -163,13 +163,17 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-3 ml-3">
+                                        <div class="col-2">
                                             <button type="button" id="remove" class="btn btn-danger">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </div>
                                     </div>
                                 </div>
+                                @section('script')
+                                    @include('components.scripts.select2')
+                                    @include('components.scripts.datepicker')
+                                @endsection
                             </div>
                             <!-- Form Group (last name)-->
                             <!-- Save changes button-->

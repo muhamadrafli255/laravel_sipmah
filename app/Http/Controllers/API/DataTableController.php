@@ -92,11 +92,35 @@ class DataTableController extends Controller
 
     public function getReportBorrows(Request $request)
     {
-        $data = \App\Models\Borrow::getReportBorrows($request->query());
+        $data = \App\Models\BorrowBooks::getReportBorrows($request->query());
         return DataTables::of($data)->addColumn('borrower_name', function($data){
-            return $data->User->name;
+            return $data->Borrow->Borrower->name;
         })->addColumn('book_title', function($data){
             return $data->Book->title;
+        })->make(true);
+    }
+
+    public function getReportDamaged(Request $request)
+    {
+        $data = \App\Models\BorrowBooks::getReportDamaged($request->query());
+        return DataTables::of($data)->addcolumn('book_code', function($data){
+            return $data->Book->code;
+        })->addcolumn('book_title', function($data){
+            return $data->Book->title;
+        })->addcolumn('borrower_name', function($data){
+            return $data->Borrow->Borrower->name;
+        })->make(true);
+    }
+
+    public function getReportLost(Request $request)
+    {
+        $data = \App\Models\BorrowBooks::getReportLost($request->query());
+        return DataTables::of($data)->addcolumn('book_code', function($data){
+            return $data->Book->code;
+        })->addcolumn('book_title', function($data){
+            return $data->Book->title;
+        })->addcolumn('borrower_name', function($data){
+            return $data->Borrow->Borrower->name;
         })->make(true);
     }
 }

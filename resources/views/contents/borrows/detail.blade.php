@@ -104,6 +104,18 @@
                             <div class="col-lg-7">
                                 <h6 class="text-muted">: {{ date('d F Y', strtotime($borrow->return_date)) }}</h6>
                             </div>
+                            <div class="col-lg-5">
+                                <h6 class="text-gray-800">Kondisi Kembali</h6>
+                            </div>
+                            <div class="col-lg-7">
+                                @if ($borrow->return_condition == 1)
+                                <h6 class="text-muted">: Baik</h6>
+                                @elseif ($borrow->return_condition == 2)
+                                <h6 class="text-muted">: Rusak</h6>
+                                @else
+                                <h6 class="text-muted">: Hilang</h6>
+                                @endif
+                            </div>
                             @endif
                             {{-- End No Telepon Detail --}}
                             {{-- No Telepon Detail --}}
@@ -112,7 +124,7 @@
                             </div>
                             <div class="col-lg-7 mb-3">
                                 <h6 class="text-muted">: 
-                                    @if ($borrow->Borrow->status_borrow == 1)
+                                    @if ($borrow->status_borrow == 1)
                                     <span class="badge badge-warning">Sedang Dipinjam</span>
                                     @else
                                     <span class="badge badge-success">Sudah Dikembalikan</span>

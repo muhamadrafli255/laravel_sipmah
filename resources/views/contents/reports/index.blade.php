@@ -46,7 +46,23 @@
     </div>
 
     <div class="card mb-4 pb-3 dt-container">
-        <div class="p-2 mx-auto mt-4">
+        <div class="col mt-2">
+        <div class="btn-group dropright">
+            <button type="button" class="btn btn-sm btn-outline-secondary rounded"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa-solid fa-download"></i>
+            </button>
+            <div class="dropdown-menu w-100 text-center">
+                <button class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fa-solid fa-file-excel"></i>
+                    Excel</button>
+                <button class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fa-solid fa-file-pdf"></i>
+                    PDF</button>
+                <button class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fa-solid fa-print"></i>
+                    Print</button>
+            </div>
+        </div>
+        </div>
+        <div class="p-2 mx-auto mt-2">
             <h5>Sedang Dipinjam</h5>
         </div>
         <hr class="mx-3">
@@ -66,131 +82,78 @@
         </div>
     </div>
 
-    <div class="card mb-4 pb-3">
+    <div class="card mb-4 pb-3 dt-container">
+        <div class="col mt-2">
+            <div class="btn-group dropright">
+                <button type="button" class="btn btn-sm btn-outline-secondary rounded"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-download"></i>
+                </button>
+                <div class="dropdown-menu w-100 text-center">
+                    <button class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fa-solid fa-file-excel"></i>
+                        Excel</button>
+                    <button class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fa-solid fa-file-pdf"></i>
+                        PDF</button>
+                    <button class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fa-solid fa-print"></i>
+                        Print</button>
+                </div>
+            </div>
+            </div>
         <div class="p-2 mx-auto mt-4">
-            <h5>Kategori buku yang banyak dipinjam</h5>
+            <h5>Dikembalikan Rusak</h5>
         </div>
         <hr class="mx-3">
         <div class="table-responsive px-2">
             <table class="table align-items-center table-bordered table-striped table-hover w-100"
-                id="dataTableHover1">
+                id="dtReportDamaged">
                 <thead class="thead-light">
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
+                        <th>Kode Buku</th>
                         <th>Judul Buku</th>
-                        <th>Jumlah Peminjaman</th>
+                        <th>Nama Peminjam</th>
+                        <th>Tanggal Kembali</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-right">1</td>
-                        <td>Novel</td>
-                        <td>Amba</td>
-                        <td class="text-right">90</td>
-                        <td class="text-center">
-                            <a href="/reports/books" class="btn btn-sm btn-outline-success" data-toggle="tooltip" data-placement="top" title="Detail">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-right">2</td>
-                        <td>Novel</td>
-                        <td>Negeri Diujung Tanduk</td>
-                        <td class="text-right">67</td>
-                        <td class="text-center">
-                            <a href="/reports/books" class="btn btn-sm btn-outline-success" data-toggle="tooltip" data-placement="top" title="Detail">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-right">3</td>
-                        <td>Novel</td>
-                        <td>Orang - Orang Biasa</td>
-                        <td class="text-right">42</td>
-                        <td class="text-center">
-                            <a href="/reports/books" class="btn btn-sm btn-outline-success" data-toggle="tooltip" data-placement="top" title="Detail">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-right">4</td>
-                        <td>Novel</td>
-                        <td>Matematika Kelas 11</td>
-                        <td class="text-right">34</td>
-                        <td class="text-center">
-                            <a href="/reports/books" class="btn btn-sm btn-outline-success" data-toggle="tooltip" data-placement="top" title="Detail">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
             </table>
         </div>
     </div>
 
     <div class="card mb-4 pb-3">
+        <div class="col mt-2">
+            <div class="btn-group dropright">
+                <button type="button" class="btn btn-sm btn-outline-secondary rounded"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-download"></i>
+                </button>
+                <div class="dropdown-menu w-100 text-center">
+                    <button class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fa-solid fa-file-excel"></i>
+                        Excel</button>
+                    <button class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fa-solid fa-file-pdf"></i>
+                        PDF</button>
+                    <button class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fa-solid fa-print"></i>
+                        Print</button>
+                </div>
+            </div>
+            </div>
         <div class="p-2 mx-auto mt-4">
-            <h5>Peminjaman Peranggota</h5>
+            <h5>Dikembalikan Hilang</h5>
         </div>
         <hr class="mx-3">
         <div class="table-responsive px-2">
             <table class="table align-items-center table-bordered table-striped table-hover w-100"
-                id="dataTableHover2">
+                id="dtReportLost">
                 <thead class="thead-light">
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
-                        <th>Jumlah Peminjaman</th>
+                        <th>Kode Buku</th>
+                        <th>Judul Buku</th>
+                        <th>Nama Peminjam</th>
+                        <th>Tanggal Kembali</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-right">1</td>
-                        <td>Dani Fitriani</td>
-                        <td>220</td>
-                        <td class="text-center">
-                            <a href="/reports/members" class="btn btn-sm btn-outline-success" data-toggle="tooltip" data-placement="top" title="Detail">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-right">2</td>
-                        <td>Raina Aqila</td>
-                        <td>187</td>
-                        <td class="text-center">
-                            <a href="/reports/members" class="btn btn-sm btn-outline-success" data-toggle="tooltip" data-placement="top" title="Detail">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-right">3</td>
-                        <td>Andara Amanda</td>
-                        <td>120</td>
-                        <td class="text-center">
-                            <a href="/reports/members" class="btn btn-sm btn-outline-success" data-toggle="tooltip" data-placement="top" title="Detail">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-right">4</td>
-                        <td>Robi Firmansyah</td>
-                        <td>97</td>
-                        <td class="text-center">
-                            <a href="/reports/members" class="btn btn-sm btn-outline-success" data-toggle="tooltip" data-placement="top" title="Detail">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
             </table>
         </div>
     </div>

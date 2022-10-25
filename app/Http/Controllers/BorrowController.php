@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\User;
 use App\Models\Borrow;
 use App\Models\BorrowBooks;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +21,7 @@ class BorrowController extends Controller
     public function create()
     {
         $title = "Tambah Peminjaman";
-        $books = Book::where('is_borrow', false)->get();
+        $books = Book::where('is_borrow', false)->where('condition_book', 1)->get();
         $users = User::get();
         return view('contents.borrows.create', compact('title', 'books', 'users'));
     }
@@ -57,7 +58,9 @@ class BorrowController extends Controller
                 'book_id'           =>  $bp[$index],
                 'estimated_return'  =>  $return,
                 'is_return'         =>  false,
-                'return_condition'  =>  null
+                'return_condition'  =>  null,
+                'created_at'        =>  Carbon::now(),
+                'updated_at'        =>  Carbon::now(),
             ];
         }
         DB::table('borrow_books')->insert($data);
@@ -139,7 +142,11 @@ class BorrowController extends Controller
 
         $borrows = BorrowBooks::where('id', $request->id)->get();
         foreach($borrows as $borrow){
-            Book::where('id', $borrow->book_id)->update(['is_borrow' => false]);
+            Book::where('id', $borrow->book_id)->update(
+                [
+                    'is_borrow'     => false,
+                    'condition_book' => $validatedData['return_condition'],
+                ]);
         }
 
         return redirect('/borrows')->with('Berhasil', 'Peminjaman berhasil dikembalikan!');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Borrow;
+use App\Models\BorrowBooks;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -22,27 +23,24 @@ class ReportController extends Controller
         return view('contents.reports.index', compact('title', 'start', 'end'));
     }
 
-    public function filter()
-    {
-        $title = "Laporan";
-
-    }
-
-    public function borrowed()
+    public function borrowed($id)
     {
         $title = "Detail Sedang Dipinjam";
-        return view('contents.reports.borrowed', compact('title'));
+        $borrows = BorrowBooks::where('id', $id)->get();
+        return view('contents.reports.borrowed', compact('title', 'borrows'));
     }
 
-    public function books()
+    public function damaged($id)
     {
-        $title = "Paling Banyak Dipinjam";
-        return view('contents.reports.books', compact('title'));
+        $title = "Detail Dikembalikan Rusak";
+        $borrows = BorrowBooks::where('id', $id)->get();
+        return view('contents.reports.damaged', compact('title', 'borrows'));
     }
 
-    public function members()
+    public function lost($id)
     {
-        $title = "Peminjaman Peranggota";
-        return view('contents.reports.members', compact('title'));
+        $title = "Detail Dikembalikan Hilang";
+        $borrows = BorrowBooks::where('id', $id)->get();
+        return view('contents.reports.lost', compact('title', 'borrows'));
     }
 }

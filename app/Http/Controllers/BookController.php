@@ -37,6 +37,21 @@ class BookController extends Controller
             'image'             =>  'required|image|file|max:5120',
         ]);
 
+        if($request->image != null)
+        {
+            $image = $request->file('image');
+            $validatedData['image'] = time().'.'.$image->extension();
+        
+            $destinationPath = public_path('/img/thumbnail');
+            $img = Image::make($image->path());
+            $img->resize(200, 512, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$validatedData['image']);
+    
+            $destinationPath = public_path('/img/book-images');
+            $image->move($destinationPath, $validatedData['image']);
+        }
+
         $total = $request->quantity;
 
         for($i=0; $i<$total; $i++)
@@ -82,11 +97,11 @@ class BookController extends Controller
         
             $destinationPath = public_path('/img/thumbnail');
             $img = Image::make($image->path());
-            $img->resize(350, 200, function ($constraint) {
+            $img->resize(200, 200, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($destinationPath.'/'.$validatedData['image']);
     
-            $destinationPath = public_path('/img/profile-images');
+            $destinationPath = public_path('/img/book-images');
             $image->move($destinationPath, $validatedData['image']);
 
             Book::where('id', $request->id)->update($validatedData);

@@ -89,6 +89,59 @@ Route::group([
 
     Route::get('/logout', [AuthController::class, 'logout']);
 
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Route Middleware Auth Role: Admin
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'namespace'     =>  'app',
+    'middleware'    =>  ['auth', 'role:admin'],
+], function(){
+
+    Route::prefix('dashboard')->group(function()
+    {
+        Route::get('/', [DashboardController::class, 'index']);
+    });
+
+    Route::prefix('officers')->group(function()
+    {
+        Route::get('/', [OfficerController::class, 'index']);
+        Route::get('/create', [OfficerController::class, 'create']);
+        Route::post('/store', [OfficerController::class, 'store']);
+        Route::get('/{id}', [OfficerController::class, 'detail']);
+        Route::get('/{id}/edit', [OfficerController::class, 'edit']);
+        Route::post('/{id}/update', [OfficerController::class, 'update']);
+        Route::get('/{id}/delete', [OfficerController::class, 'delete']);
+        Route::post('/getuser', [OfficerController::class, 'getUser']);
+    });
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Route Middleware Auth Role: Admin & Officer
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'namespace' =>  'app',
+    'middleware'    =>  ['auth', 'role:officer|admin'],
+], function(){
+
+    Route::prefix('members')->group(function()
+    {
+        Route::get('/', [MemberController::class, 'index']);
+        Route::get('/create', [MemberController::class, 'create']);
+        Route::post('/store', [MemberController::class, 'store']);
+        Route::get('/{id}', [MemberController::class, 'detail']);
+        Route::get('/{id}/edit', [MemberController::class, 'edit']);
+        Route::post('/{id}/update', [MemberController::class, 'update']);
+        Route::get('/{id}/delete', [MemberController::class, 'delete']);
+    });
+
     Route::prefix('categories')->group(function()
     {
         Route::get('/', [CategoryController::class, 'index']);
@@ -150,62 +203,9 @@ Route::group([
     {
         Route::get('/', [ReportController::class, 'index']);
         Route::get('/books', [ReportController::class, 'books']);
-        Route::get('/borrowed', [ReportController::class, 'borrowed']);
-        Route::get('/members', [ReportController::class, 'members']);
-    });
-});
-
-Route::group([
-    'namespace'     =>  'app',
-    'middleware'    =>  ['auth', 'role:admin'],
-], function(){
-
-    Route::prefix('dashboard')->group(function()
-    {
-        Route::get('/', [DashboardController::class, 'index']);
-    });
-
-    Route::prefix('members')->group(function()
-    {
-        Route::get('/', [MemberController::class, 'index']);
-        Route::get('/create', [MemberController::class, 'create']);
-        Route::post('/store', [MemberController::class, 'store']);
-        Route::get('/{id}', [MemberController::class, 'detail']);
-        Route::get('/{id}/edit', [MemberController::class, 'edit']);
-        Route::post('/{id}/update', [MemberController::class, 'update']);
-        Route::get('/{id}/update/status', [MemberController::class, 'updateStatus']);
-        Route::get('/{id}/delete', [MemberController::class, 'delete']);
-        Route::get('/{id}/reset', [MemberController::class, 'mailReset']);
-    });
-
-    Route::prefix('officers')->group(function()
-    {
-        Route::get('/', [OfficerController::class, 'index']);
-        Route::get('/create', [OfficerController::class, 'create']);
-        Route::post('/store', [OfficerController::class, 'store']);
-        Route::get('/{id}', [OfficerController::class, 'detail']);
-        Route::get('/{id}/edit', [OfficerController::class, 'edit']);
-        Route::post('/{id}/update', [OfficerController::class, 'update']);
-        Route::get('/{id}/delete', [OfficerController::class, 'delete']);
-        Route::post('/getuser', [OfficerController::class, 'getUser']);
-    });
-
-});
-
-Route::group([
-    'namespace' =>  'app',
-    'middleware'    =>  ['auth', 'role:officer|admin'],
-], function(){
-
-    Route::prefix('members')->group(function()
-    {
-        Route::get('/', [MemberController::class, 'index']);
-        Route::get('/create', [MemberController::class, 'create']);
-        Route::post('/store', [MemberController::class, 'store']);
-        Route::get('/{id}', [MemberController::class, 'detail']);
-        Route::get('/{id}/edit', [MemberController::class, 'edit']);
-        Route::post('/{id}/update', [MemberController::class, 'update']);
-        Route::get('/{id}/delete', [MemberController::class, 'delete']);
+        Route::get('/{id}/borrowed', [ReportController::class, 'borrowed']);
+        Route::get('/{id}/damaged', [ReportController::class, 'damaged']);
+        Route::get('/{id}/lost', [ReportController::class, 'lost']);
     });
 
     Route::prefix('dashboard')->group(function()
@@ -214,6 +214,12 @@ Route::group([
     });
 });
 
+
+/*
+|--------------------------------------------------------------------------
+| Route Middleware Auth Role: Member
+|--------------------------------------------------------------------------
+*/
 Route::group([
     'namespace'     =>  'app',
     'middleware'    =>  ['auth', 'role:member'],
@@ -221,5 +227,17 @@ Route::group([
     Route::prefix('home')->group(function()
     {
         Route::get('/', [HomeController::class, 'index']);
+    });
+
+    Route::prefix('books')->group(function()
+    {
+        Route::get('/', [BookController::class, 'index']);
+        Route::get('/{id}', [BookController::class, 'detail']);
+    });
+
+    Route::prefix('borrows')->group(function()
+    {
+        Route::get('/', [BorrowController::class, 'index']);
+        Route::get('/{id}', [BorrowController::class, 'detail']);
     });
 });
