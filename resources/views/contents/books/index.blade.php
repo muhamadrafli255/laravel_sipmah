@@ -30,6 +30,7 @@
             @endif
             <div class="card mb-4 dt-container">
                 <div class="col-lg-12 mt-3">
+                    @role('admin')
                     <div class="btn-group dropright">
                         <button type="button" class="btn btn-sm btn-outline-secondary rounded mb-2"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,6 +44,22 @@
                     </div>
                     <a href="/books/create" class="btn btn-sm btn-outline-primary rounded mb-2"><i
                             class="fa-solid fa-plus"></i> Tambah</a>
+                    @endrole
+                    @role('officer')
+                    <div class="btn-group dropright">
+                        <button type="button" class="btn btn-sm btn-outline-secondary rounded mb-2"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-solid fa-download"></i>
+                        </button>
+                        <div class="dropdown-menu w-100 text-center">
+                            <button class="btn btn-sm btn-success col w-75 mb-2"><i class="fa-solid fa-file-excel dt-excel"></i> Excel</button>
+                            <button class="btn btn-sm btn-danger col w-75 mb-2"><i class="fa-solid fa-file-pdf dt-pdf"></i> PDF</button>
+                            <button class="btn btn-sm btn-secondary col w-75 mb-2"><i class="fa-solid fa-print dt-print"></i> Print</button>
+                        </div>
+                    </div>
+                    <a href="/books/create" class="btn btn-sm btn-outline-primary rounded mb-2"><i
+                            class="fa-solid fa-plus"></i> Tambah</a>
+                    @endrole
                     <div class="float-right ml-2">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">

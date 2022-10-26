@@ -49,6 +49,9 @@
             @else
             
             @endif
+
+            
+            @role('officer')
             <li class="nav-item {{ Request::is('categories*') ? 'active' : '' }}">
                 <a class="nav-link" href="/categories">
                     <i class="fa-solid fa-tag"></i>
@@ -67,6 +70,27 @@
                     <span>Penerbit</span>
                 </a>
             </li>
+            @endrole
+            @role('admin')
+            <li class="nav-item {{ Request::is('categories*') ? 'active' : '' }}">
+                <a class="nav-link" href="/categories">
+                    <i class="fa-solid fa-tag"></i>
+                    <span>Kategori</span>
+                </a>
+            </li>
+            <li class="nav-item {{ Request::is('racks*') ? 'active' : '' }}">
+                <a class="nav-link" href="/racks">
+                    <i class="fa-solid fa-table-list"></i>
+                    <span>Rak</span>
+                </a>
+            </li>
+            <li class="nav-item {{ Request::is('publishers*') ? 'active' : '' }}">
+                <a class="nav-link" href="/publishers">
+                    <i class="fa-solid fa-building"></i>
+                    <span>Penerbit</span>
+                </a>
+            </li>
+            @endrole
             <li class="nav-item {{ Request::is('books*') ? 'active' : '' }}">
                 <a class="nav-link" href="/books">
                     <i class="fa-solid fa-book"></i>

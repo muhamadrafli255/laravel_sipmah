@@ -6,7 +6,10 @@ use App\Models\City;
 use App\Models\User;
 use App\Models\District;
 use App\Models\Province;
+use Illuminate\Support\Str;
+use App\Models\UserActivate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
 
 class OfficerController extends Controller
@@ -153,5 +156,23 @@ class OfficerController extends Controller
 
         User::where('id', $id)->update(['role_id' => 3]);
         return redirect('/officers')->with('Berhasil', 'Petugas '.$user->name.' berhasil diberhentikan sebagai petugas!');
+    }
+
+    public function mailReset($id)
+    {
+        $getData = User::where('id', $id)->get();
+        foreach($getData as $data)
+        $generateToken = UserActivate::create([
+            'user_id'   =>  $data->id,
+            'token'     =>  Str::random(16),
+        ]);
+
+        $token = $generateToken->token;
+        Mail::send('contents.mail.forgot', ['token' => $token, 'name' => $data->name], function($message) use($data){
+                $message->to($data->email)->subject('Atur Ulang Kata Sandi');
+        });
+
+        return redirect('/officers')->with('Berhasil', 'Tautan atur ulang kata sandi berhasil
+                                        dikirim ke petugas ' . $data->name);
     }
 }

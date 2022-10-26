@@ -122,6 +122,7 @@ Route::group([
         Route::get('/create', [OfficerController::class, 'create']);
         Route::post('/store', [OfficerController::class, 'store']);
         Route::get('/{id}', [OfficerController::class, 'detail']);
+        Route::get('/{id}/reset', [OfficerController::class, 'mailReset']);
         Route::get('/{id}/edit', [OfficerController::class, 'edit']);
         Route::post('/{id}/update', [OfficerController::class, 'update']);
         Route::get('/{id}/delete', [OfficerController::class, 'delete']);
@@ -137,7 +138,7 @@ Route::group([
 */
 Route::group([
     'namespace' =>  'app',
-    'middleware'    =>  ['auth', 'role:officer|admin'],
+    'middleware'    =>  ['auth', 'role:admin|officer'],
 ], function(){
 
     Route::prefix('members')->group(function()
@@ -188,8 +189,8 @@ Route::group([
     Route::prefix('books')->group(function()
     {
         Route::get('/', [BookController::class, 'index']);
-        Route::get('/create', [BookController::class, 'create']);
         Route::get('/{id}', [BookController::class, 'detail']);
+        Route::get('/create', [BookController::class, 'create']);
         Route::post('/store', [BookController::class, 'store']);
         Route::get('/{id}/edit', [BookController::class, 'edit']);
         Route::post('/{id}/update', [BookController::class, 'update']);
@@ -224,6 +225,7 @@ Route::group([
 });
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Route Middleware Auth Role: Member
@@ -231,7 +233,7 @@ Route::group([
 */
 Route::group([
     'namespace'     =>  'app',
-    'middleware'    =>  ['auth', 'role:member'],
+    'middleware'    =>  ['auth'],
 ], function(){
     Route::prefix('home')->group(function()
     {
