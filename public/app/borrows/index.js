@@ -59,6 +59,10 @@ function initDatatable() {
         
         [[ 1, 'asc' ]],
         function(d) {
+            if(role_id && auth){
+                d.role_id = role_id,
+                d.auth = auth
+            }
         return d
         },
         function(settings) {

@@ -92,13 +92,13 @@
             </li>
             @endrole
             <li class="nav-item {{ Request::is('books*') ? 'active' : '' }}">
-                <a class="nav-link" href="/books">
+                <a class="nav-link {{ auth()->user()->status == 0 ? 'disabled' : '' }}" href="/books">
                     <i class="fa-solid fa-book"></i>
                     <span>Buku</span>
                 </a>
             </li>
             <li class="nav-item {{ Request::is('borrows*') ? 'active' : '' }}">
-                <a class="nav-link" href="/borrows">
+                <a class="nav-link {{ auth()->user()->status == 0 ? 'disabled' : '' }}" href="/borrows">
                     <i class="fa-solid fa-arrow-up-from-bracket"></i>
                     <span>Peminjaman</span>
                 </a>

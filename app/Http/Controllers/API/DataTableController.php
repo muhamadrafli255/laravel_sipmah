@@ -87,7 +87,15 @@ class DataTableController extends Controller
             return $data->Book->title;
         })->addColumn('borrow_date', function($data){
             return $data->Borrow->borrow_date;
+        })->addColumn('borrow_date', function($data){
+            return $data->Borrow->borrow_date;
         })->make(true);
+    }
+
+    public function getBorrowsPersonal(Request $request)
+    {
+        $data = \App\Models\BorrowBooks::getBorrowsPersonal($request->query());
+        return DataTables::of($data)->make(true);
     }
 
     public function getReportBorrows(Request $request)

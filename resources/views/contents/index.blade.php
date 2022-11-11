@@ -1,4 +1,11 @@
 @extends('app.main')
+
+@section('script')
+    <script src="/plugins/chartjs/js/chart.min.js"></script>
+    @include('components.scripts.borrowchart')
+    @include('components.scripts.bookschart')
+@endsection
+
 @section('content')
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
@@ -48,7 +55,7 @@
             </div>
         </div>
         <!-- New User Card Example -->
-        <div class="col-xl-4 col-md-6 mb-4">
+        <div class="col-xl-4 col-md-12 mb-4">
             <div class="card h-100">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -64,93 +71,19 @@
             </div>
         </div>
 
-    
-        <div class="col-xl-12 col-lg-7">
-            <div class="card mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Sedang Dipinjam</h6>
-                </div>
+        <div class="col-lg-8">
+            <div class="card">
                 <div class="card-body">
-                    <div class="table-responsive p-3">
-                        <table class="table align-items-center table-bordered table-striped table-hover w-100">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Kode Buku</th>
-                                    <th>Judul Buku</th>
-                                    <th>Nama Peminjam</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($borrows as $borrow)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $borrow->Book->code }}</td>
-                                    <td>{{ $borrow->Book->title }}</td>
-                                    <td>{{ $borrow->Borrow->Borrower->name }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                    <h4 align="center">Statistik Peminjaman</h4>
+                    <canvas id="borrowChart" class="chartjs mb-3"></canvas>
                 </div>
             </div>
         </div>
-        <div class="col-xl-6 col-lg-5">
-            <div class="card mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Buku dengan kondisi rusak</h6>
-                </div>
+        <div class="col-lg-4">
+            <div class="card">
                 <div class="card-body">
-                    <div class="table-responsive p-3">
-                        <table class="table align-items-center table-bordered table-striped table-hover w-100">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Kode Buku</th>
-                                    <th>Judul Buku</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($damageds as $damaged)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $damaged->code }}</td>
-                                    <td>{{ $damaged->title }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-6 col-lg-5">
-            <div class="card mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Buku dengan kondisi hilang</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive p-3">
-                        <table class="table align-items-center table-bordered table-striped table-hover w-100">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Kode Buku</th>
-                                    <th>Judul Buku</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($losts as $lost)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $lost->code }}</td>
-                                    <td>{{ $lost->title }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                    <h4 align="center">Buku Berdasarkan Kondisi</h4>
+                    <canvas id="booksChart" class="chartjs mb-5"></canvas>
                 </div>
             </div>
         </div>

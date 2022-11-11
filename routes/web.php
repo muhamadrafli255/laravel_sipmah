@@ -150,6 +150,7 @@ Route::group([
         Route::get('/{id}/edit', [MemberController::class, 'edit']);
         Route::post('/{id}/update', [MemberController::class, 'update']);
         Route::get('/{id}/delete', [MemberController::class, 'delete']);
+        Route::get('/{id}/update/status', [MemberController::class, 'updateStatus']);
     });
 
     Route::prefix('categories')->group(function()
@@ -189,8 +190,8 @@ Route::group([
     Route::prefix('books')->group(function()
     {
         Route::get('/', [BookController::class, 'index']);
-        Route::get('/{id}', [BookController::class, 'detail']);
         Route::get('/create', [BookController::class, 'create']);
+        Route::get('/{id}', [BookController::class, 'detail']);
         Route::post('/store', [BookController::class, 'store']);
         Route::get('/{id}/edit', [BookController::class, 'edit']);
         Route::post('/{id}/update', [BookController::class, 'update']);
@@ -225,20 +226,19 @@ Route::group([
 });
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Route Middleware Auth Role: Member
 |--------------------------------------------------------------------------
 */
+Route::prefix('home')->group(function()
+{
+    Route::get('/', [HomeController::class, 'index']);
+});
 Route::group([
     'namespace'     =>  'app',
-    'middleware'    =>  ['auth'],
+    'middleware'    =>  ['auth', 'isVerify'],
 ], function(){
-    Route::prefix('home')->group(function()
-    {
-        Route::get('/', [HomeController::class, 'index']);
-    });
 
     Route::prefix('books')->group(function()
     {

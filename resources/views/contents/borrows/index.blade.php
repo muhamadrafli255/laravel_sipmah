@@ -7,6 +7,8 @@
 @section('script')
     @include('components.scripts.momentjs')
     @include('components.scripts.datatable')
+    @include('components.scripts.role')
+    @include('components.scripts.userid')
     <script src="/app/borrows/index.js"></script>
 @endsection
 
@@ -29,7 +31,6 @@
             @endif
             <div class="card mb-4 dt-container">
                 <div class="col-lg-12 mt-3">
-                    @role('admin')
                     <div class="btn-group dropright">
                         <button type="button" class="btn btn-sm btn-outline-secondary rounded mb-2"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -46,25 +47,6 @@
                     </div>
                     <a href="/borrows/create" class="btn btn-sm btn-outline-primary rounded mb-2"><i
                             class="fa-solid fa-plus"></i> Tambah</a>
-                            @endrole
-                    @role('officer')
-                    <div class="btn-group dropright">
-                        <button type="button" class="btn btn-sm btn-outline-secondary rounded mb-2"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa-solid fa-download"></i>
-                        </button>
-                        <div class="dropdown-menu w-100 text-center">
-                            <button class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fa-solid fa-file-excel"></i>
-                                Excel</button>
-                            <button class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fa-solid fa-file-pdf"></i>
-                                PDF</button>
-                            <button class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fa-solid fa-print"></i>
-                                Print</button>
-                        </div>
-                    </div>
-                    <a href="/borrows/create" class="btn btn-sm btn-outline-primary rounded mb-2"><i
-                            class="fa-solid fa-plus"></i> Tambah</a>
-                            @endrole
                     <div class="float-right ml-2">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
@@ -107,52 +89,6 @@
     </div>
 </div>
 
-<!-- Modal Nonaktif-->
-<div class="modal fade" id="modalPengembalian" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Data Pengembalian</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="">
-                    <div class="col-lg-12 mb-2">
-                        <label for="selectPengembali">Nama Pengembali</label>
-                        <select name="" id="selectPengembali" class="form-control">
-                            <option value="" selected disabled>Nama Pengembali</option>
-                            <option value="">Robi Firmansyah</option>
-                            <option value="">Dani Fitriani</option>
-                            <option value="">Dodi Permana</option>
-                            <option value="">Queensha Marsya</option>
-                        </select>
-                    </div>
-
-                    <div class="col-lg-12 mb-2">
-                        <label for="inputDate">Tanggal Kembali</label>
-                        <input type="date" id="inputDate" class="form-control" placeholder="Tanggal Kembali">
-                    </div>
-
-                    <div class="col-lg-12 mb-2">
-                        <label for="selectKondisi">Kondisi</label>
-                        <select name="" id="selectKondisi" class="form-control">
-                            <option value="" selected disabled>Kondisi Buku</option>
-                            <option value="">Baik</option>
-                            <option value="">Rusak</option>
-                            <option value="">Hilang</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal">Batal</button>
-                <a href="/borrows/id/return" class="btn btn-sm btn-outline-success">Kembalikan</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!---Container Fluid-->
 @endsection

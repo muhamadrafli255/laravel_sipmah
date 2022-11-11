@@ -7,12 +7,14 @@
     "require": {
         "php": "^7.3|^8.0",
         "alfa6661/laravel-autonumber": "^1.2",
+        "consoletvs/charts": "^6.5",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.7",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "laraveldaily/laravel-charts": "^0.1.29",
         "spatie/laravel-permission": "^5.5",
         "yajra/laravel-datatables-oracle": "^9.21.2"
     },

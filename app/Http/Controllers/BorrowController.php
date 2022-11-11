@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Book;
 use App\Models\User;
 use App\Models\Borrow;
 use App\Models\BorrowBooks;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class BorrowController extends Controller
 {
     public function index()
     {
         $title = "Daftar Peminjaman";
-        return view('contents.borrows.index', compact('title',));
+        return view('contents.borrows.index', compact('title'));
     }
 
     public function create()

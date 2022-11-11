@@ -54,7 +54,7 @@ class MemberController extends Controller
     
             $destinationPath = public_path('/img/profile-images');
             $image->move($destinationPath, $validatedData['image']);
-
+            
             $user = User::create(
                 [
                     'identifier_number' =>  $validatedData['identifier_number'],

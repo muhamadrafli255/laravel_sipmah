@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class BorrowBooks extends Model
 {
@@ -33,12 +34,16 @@ class BorrowBooks extends Model
 
     public static function getBorrows($request)
     {
-        $borrows = BorrowBooks::select([
-            'id',
-            'borrow_id',
-            'book_id',
-            'status_borrow',
-        ])->latest();
+        $borrows = BorrowBooks::with('Borrow');
+
+        if(isset($request['role_id'])){
+            if ($request['role_id'] == 3) {
+                $user_id = $request['auth'];
+                $borrows->whereHas('Borrow', function($query) use($user_id){
+                    return $query->where('borrower_id', '=', $user_id);
+                })->get();
+            }
+        }
 
         return $borrows;
     }
