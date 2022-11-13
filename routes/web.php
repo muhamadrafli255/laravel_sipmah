@@ -34,6 +34,7 @@ Route::get('/', function () {
 Route::post('/getcities', [AddressController::class, 'getCities']);
 Route::post('/getdistricts', [AddressController::class, 'getDistricts']);
 Route::post('/getsubdistricts', [AddressController::class, 'getSubDistricts']);
+Route::post('/searchbook', [HomeController::class, 'search']);
 
 /*
 |--------------------------------------------------------------------------
@@ -231,14 +232,15 @@ Route::group([
 | Route Middleware Auth Role: Member
 |--------------------------------------------------------------------------
 */
-Route::prefix('home')->group(function()
-{
-    Route::get('/', [HomeController::class, 'index']);
-});
 Route::group([
     'namespace'     =>  'app',
     'middleware'    =>  ['auth', 'isVerify'],
 ], function(){
+    
+    Route::prefix('home')->group(function()
+    {
+        Route::get('/', [HomeController::class, 'index']);
+    });
 
     Route::prefix('books')->group(function()
     {

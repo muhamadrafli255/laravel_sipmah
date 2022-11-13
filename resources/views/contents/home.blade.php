@@ -30,7 +30,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-search"></i></span>
                     </div>
-                    <input type="text" id="SearchBox" class="form-control form-control-xl dt-search"
+                    <input type="text" id="searchBook" class="form-control form-control-xl dt-search"
                         placeholder="Masukan Kata Kunci" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
             </div>
@@ -38,7 +38,7 @@
     </div>
 </div>
 <div class="container-fluid">
-    <div class="row mt-4">
+    <div id="card" class="row mt-4">
         @foreach ($books as $book)
         <a href="/books/{{ $book->id }}" class="text-decoration-none text-black-50 mx-auto">
         <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-12">
@@ -53,7 +53,8 @@
         </a>
             @endforeach
         </div>
-            {{ $books->links() }}
+            {{-- {{ $books->links() }} --}}
     </div>
 <!---Container Fluid-->
+@include('components.scripts.searchbooks')
 @endsection
