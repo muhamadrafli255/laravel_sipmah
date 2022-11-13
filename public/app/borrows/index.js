@@ -40,11 +40,14 @@ function initDatatable() {
         ],
         function (data, type, row) {
             const status = row.status_borrow
+            const role = role_id
             const path = 'borrows/' + row.id
             let updateBtn = '',
             detailBtn = '',
             deleteBtn = ''
-                    if(status == 2){
+                    if(role == 3){
+                        detailBtn = '<a href="'+ path +'" class="btn btn-sm btn-outline-info" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fas fa-fw fa-eye"></i></a>'
+                    }else if(status == 2){
                         detailBtn = '<a href="'+ path +'" class="btn btn-sm btn-outline-info" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fas fa-fw fa-eye"></i></a>'
                     }else{
                         detailBtn = '<a href="'+ path +'" class="btn btn-sm btn-outline-info" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fas fa-fw fa-eye"></i></a>'

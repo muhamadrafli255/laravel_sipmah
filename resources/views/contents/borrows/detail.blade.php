@@ -135,6 +135,7 @@
                             {{-- End No Telepon Detail --}}
                             <div class="col-lg-12 mt-2 mb-1">
                                 <div class="float-right">
+                                    @role('admin')
                                     @if ($borrow->status_borrow == 1)
                                     <a href="/borrows" class="btn btn-sm btn-outline-secondary">Kembali</a>
                                     <a href="/borrows/{{ $borrow->id }}/edit" class="btn btn-sm btn-outline-warning">Ubah</a>
@@ -142,6 +143,19 @@
                                     @else
                                     <a href="/borrows" class="btn btn-sm btn-outline-secondary">Kembali</a>
                                     @endif
+                                    @endrole
+                                    @role('officer')
+                                    @if ($borrow->status_borrow == 1)
+                                    <a href="/borrows" class="btn btn-sm btn-outline-secondary">Kembali</a>
+                                    <a href="/borrows/{{ $borrow->id }}/edit" class="btn btn-sm btn-outline-warning">Ubah</a>
+                                    <a href="/borrows/{{ $borrow->id }}/return" class="btn btn-sm btn-outline-success">Pengembalian</a>
+                                    @else
+                                    <a href="/borrows" class="btn btn-sm btn-outline-secondary">Kembali</a>
+                                    @endif
+                                    @endrole
+                                    @role('member')
+                                    <a href="/borrows" class="btn btn-sm btn-outline-secondary">Kembali</a>
+                                    @endrole
                                 </div>
                             </div>
                         </div>
@@ -150,51 +164,4 @@
             </div>
         </div>
     </div>
-
-<!-- Modal Nonaktif-->
-<div class="modal fade" id="modalPengembalian" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Perhatian!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="">
-                    <div class="col-lg-12 mb-2">
-                        <label for="selectPengembali">Nama Pengembali</label>
-                        <select name="" id="selectPengembali" class="form-control">
-                            <option value="" selected disabled>Nama Pengembali</option>
-                            <option value="">Robi Firmansyah</option>
-                            <option value="">Dani Fitriani</option>
-                            <option value="">Dodi Permana</option>
-                            <option value="">Queensha Marsya</option>
-                        </select>
-                    </div>
-
-                    <div class="col-lg-12 mb-2">
-                        <label for="inputDate">Tanggal Kembali</label>
-                        <input type="date" id="inputDate" class="form-control" placeholder="Tanggal Kembali">
-                    </div>
-
-                    <div class="col-lg-12 mb-2">
-                        <label for="selectKondisi">Kondisi</label>
-                        <select name="" id="selectKondisi" class="form-control">
-                            <option value="" selected disabled>Kondisi Buku</option>
-                            <option value="">Baik</option>
-                            <option value="">Rusak</option>
-                            <option value="">Hilang</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal">Batal</button>
-                <a href="/borrows/id/return" class="btn btn-sm btn-outline-success">Kembalikan</a>
-            </div>               
-        </div>
-    </div>
-</div>
 @endsection

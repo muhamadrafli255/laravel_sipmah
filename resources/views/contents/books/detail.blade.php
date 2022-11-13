@@ -88,11 +88,23 @@
                                 @endif
                             </div>
                             <div class="col-lg-12 mt-2 mb-1">
+                                @if (auth()->user()->role_id == 1)
                                 <div class="float-right">
                                     <a href="/books" class="btn btn-sm btn-outline-secondary">Kembali</a>
                                     <a href="/books/{{ $book->id }}/edit" class="btn btn-sm btn-outline-primary">Ubah</a>
                                     <a href="/books/{{ $book->id }}/delete" class="btn btn-sm btn-outline-danger">Hapus</a>
                                 </div>
+                                @elseif(auth()->user()->role_id == 2)
+                                <div class="float-right">
+                                    <a href="/books" class="btn btn-sm btn-outline-secondary">Kembali</a>
+                                    <a href="/books/{{ $book->id }}/edit" class="btn btn-sm btn-outline-primary">Ubah</a>
+                                    <a href="/books/{{ $book->id }}/delete" class="btn btn-sm btn-outline-danger">Hapus</a>
+                                </div>
+                                @else
+                                <div class="float-right">
+                                    <a href="/books" class="btn btn-sm btn-outline-secondary">Kembali</a>
+                                </div>
+                                @endif
                                 @endforeach
                             </div>
                         </div>

@@ -80,6 +80,7 @@ class Book extends Model
             'publisher_id',
             'title',
             'writer',
+            'image',
             'publication_year',
         ]);
 

@@ -87,7 +87,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>No</th>
-                                <th>Kode Buku</th>
+                                <th>Gambar Buku</th>
                                 <th>Judul Buku</th>
                                 <th>Kategori</th>
                                 <th>Penulis</th>
